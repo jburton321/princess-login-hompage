@@ -90,7 +90,10 @@ export function LoginForm() {
         </a>
       </div>
 
-      <button type="submit" className="login-submit-btn w-full rounded-full py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em]">
+      <button
+        type="submit"
+        className="login-submit-btn w-full cursor-pointer rounded-full border-0 py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em]"
+      >
         LOGIN
       </button>
 

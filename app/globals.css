@@ -63,41 +63,47 @@ body {
 }
 
 /*
- * Pink pill LOGIN — use plain CSS for :hover/:active so states aren’t dropped
- * (Tailwind arbitrary hover + CSS variables can be flaky in some builds).
+ * Pink pill LOGIN — plain :hover/:active. Hover keeps full magenta (brightness), not white color-mix
+ * (mixing white made the button look “not pink,” and touch :hover can stick pale).
  */
-.login-submit-btn {
+button.login-submit-btn {
+  background-color: #e91e8c;
   background-color: var(--pcl-pink);
   color: #fff;
   box-shadow: 0 2px 8px rgba(233, 30, 140, 0.35);
   transition:
     background-color 0.2s ease,
     box-shadow 0.2s ease,
-    transform 0.15s ease;
+    transform 0.15s ease,
+    filter 0.2s ease;
 }
 
-.login-submit-btn:hover {
-  background-color: color-mix(in srgb, var(--pcl-pink) 78%, white);
-  box-shadow: 0 4px 16px rgba(233, 30, 140, 0.48);
+button.login-submit-btn:hover {
+  background-color: #e91e8c;
+  background-color: var(--pcl-pink);
+  filter: brightness(1.12);
+  box-shadow: 0 4px 18px rgba(233, 30, 140, 0.55);
 }
 
-.login-submit-btn:active {
+button.login-submit-btn:active {
+  filter: none;
+  background-color: #c9177c;
   background-color: var(--pcl-pink-dark);
   box-shadow: 0 1px 4px rgba(233, 30, 140, 0.45);
   transform: scale(0.98);
 }
 
-.login-submit-btn:focus-visible {
+button.login-submit-btn:focus-visible {
   outline: 2px solid var(--pcl-pink-dark);
   outline-offset: 3px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .login-submit-btn {
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  button.login-submit-btn {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
   }
 
-  .login-submit-btn:active {
+  button.login-submit-btn:active {
     transform: none;
   }
 }
