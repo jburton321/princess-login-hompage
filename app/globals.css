@@ -11,6 +11,8 @@
   --pcl-blue-dark: #003b5c;
   --pcl-blue-aux-dark: #002b49;
   --pcl-blue-bright: #0071c2;
+  /* Brand spec — Domaine display heading on light surfaces */
+  --pcl-domaine-heading-blue: #003595;
 
   /* ── Neutrals ── */
   --pcl-grey: #54575a;
@@ -43,6 +45,23 @@
 
   --background: var(--pcl-white);
   --foreground: var(--pcl-neutral-dark);
+
+  /* Login field shell */
+  --login-field-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+}
+
+/* Notched login inputs — shadow you can adjust without hunting class strings */
+.login-field-shell {
+  box-shadow: var(--login-field-shadow);
+}
+
+img.site-header-logo {
+  display: block;
+  width: 320px;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
 }
 
 @theme inline {
@@ -58,8 +77,21 @@ body {
   font-family: var(--font-pcl-text), system-ui, sans-serif;
 }
 
+/* Headings — Domaine Display Narrow (local OTF, next/font) */
 .font-pcl-display {
   font-family: var(--font-pcl-display), system-ui, sans-serif;
+}
+
+/* Domaine-style primary heading (light background) — matches brand spec */
+.pcl-heading-domaine {
+  margin: 0;
+  font-family: var(--font-pcl-display), sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 48px;
+  letter-spacing: 0;
+  color: var(--pcl-domaine-heading-blue);
 }
 
 /*

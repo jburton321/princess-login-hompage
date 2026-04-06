@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+/**
+ * Static audit: hero background video wiring + asset on disk.
+ * For live playback, open the page and confirm the <video> plays (DevTools → Network → hero-loop.mp4).
+ */
+
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const root = path.join(__dirname, "..");
+const mp4 = path.join(root, "public", "hero-loop.mp4");
+const pageTsx = path.join(root, "app", "page.tsx");
+const heroSectionTsx = path.join(root, "app", "components", "HeroSection.tsx");
+const heroBackgroundVideoTsx = path.join(root, "app", "components", "HeroBackgroundVideo.tsx");
+
+let failed = false;
+function ok(msg) {
+  console.log(`✓ ${msg}`);
+}
+function fail(msg) {
+  console.error(`✗ ${msg}`);
+  failed = true;
+}
+
+console.log("Hero video audit — princess-promotions-login-page\n");
+
+if (!fs.existsSync(mp4)) {
+  fail(`Missing ${path.relative(root, mp4)} — video cannot play without this file.`);
+} else {
+  const st = fs.statSync(mp4);
+  if (st.size < 512) {
+    fail(`${path.relative(root, mp4)} exists but is tiny (${st.size} bytes); likely corrupt or placeholder.`);
+  } else {
+    ok(`public/hero-loop.mp4 exists (${(st.size / 1024 / 1024).toFixed(2)} MiB)`);
+  }
+}
+
+const heroSrc = [pageTsx, heroSectionTsx, heroBackgroundVideoTsx]
+  .filter((p) => fs.existsSync(p))
+  .map((p) => fs.readFileSync(p, "utf8"))
+  .join("\n");
+
+if (!fs.existsSync(pageTsx)) {
+  fail(`Missing ${path.relative(root, pageTsx)}`);
+} else if (!fs.existsSync(heroSectionTsx)) {
+  fail(`Missing ${path.relative(root, heroSectionTsx)}`);
+} else if (!fs.existsSync(heroBackgroundVideoTsx)) {
+  fail(`Missing ${path.relative(root, heroBackgroundVideoTsx)}`);
+} else {
+  const pageContent = fs.readFileSync(pageTsx, "utf8");
+  const sectionContent = fs.readFileSync(heroSectionTsx, "utf8");
+  const checks = [
+    [/<video[\s\S]*?>/i.test(heroSrc), "<video> present (HeroBackgroundVideo / hero stack)"],
+    [/hero-loop|HERO_LOOP_SRC|\/hero-loop\.mp4/.test(heroSrc), "hero video path /hero-loop.mp4"],
+    [/autoPlay/.test(heroSrc), "autoPlay (required for background playback)"],
+    [/muted/.test(heroSrc), "muted (required for autoplay in browsers)"],
+    [/loop/.test(heroSrc), "loop"],
+    [/playsInline/.test(heroSrc), "playsInline (iOS)"],
+    [/HeroSection/.test(pageContent), "page.tsx renders HeroSection"],
+    [sectionContent.includes("isolate") && sectionContent.includes("overflow-hidden"), "HeroSection: isolate + overflow-hidden"],
+  ];
+  for (const [pass, label] of checks) {
+    if (pass) ok(`${label}`);
+    else fail(`missing — ${label}`);
+  }
+}
+
+console.log("");
+if (failed) {
+  console.error("Audit failed.\n");
+  process.exit(1);
+}
+console.log("Static audit passed. In the browser: open / → Elements → <video> should not be paused after load (muted autoplay).\n");
+process.exit(0);

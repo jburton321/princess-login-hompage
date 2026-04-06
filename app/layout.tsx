@@ -1,17 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Red_Hat_Display, Red_Hat_Text } from "next/font/google";
+import { Red_Hat_Text } from "next/font/google";
+import { domaineDisplayNarrow } from "./fonts/domaine-narrow";
 import "./globals.css";
 
 const redHatText = Red_Hat_Text({
   variable: "--font-pcl-text",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-});
-
-const redHatDisplay = Red_Hat_Display({
-  variable: "--font-pcl-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
 });
 
 /** Aligned with https://www.princesspromotions.com/ initial HTML meta (title, description, viewport, theme-color, robots). */
@@ -45,9 +40,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${redHatText.variable} ${redHatDisplay.variable} h-full antialiased`}
+      className={`${redHatText.variable} ${domaineDisplayNarrow.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans">{children}</body>
+      <body className="min-h-full font-sans" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

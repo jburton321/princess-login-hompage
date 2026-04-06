@@ -1,17 +1,13 @@
-import Image from "next/image";
-
 export function SiteHeader() {
   return (
     <header className="relative z-30 shrink-0 bg-white">
-      <div className="mx-auto flex h-14 max-w-[100vw] items-center justify-between">
+      <div className="mx-auto flex max-w-[100vw] items-center justify-between">
         <div className="flex min-w-0 shrink-0 items-center">
-          <Image
+          <img
             src="/princess-promotions-logo.png"
             alt="Princess Promotions"
-            width={673}
-            height={184}
-            className="block h-14 w-auto max-h-14 object-contain object-left"
-            priority
+            className="site-header-logo"
+            fetchPriority="high"
           />
         </div>
         <div className="flex shrink-0 items-center pr-4 sm:pr-8 lg:pr-10">
