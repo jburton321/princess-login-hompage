@@ -3,15 +3,14 @@ import Image from "next/image";
 export function SiteHeader() {
   return (
     <header className="relative z-30 shrink-0 border-t-[3px] border-[#3e2b2e] border-b border-neutral-200 bg-white">
-      <div className="mx-auto flex h-14 max-w-[100vw] items-stretch justify-between">
-        {/* flex-1 + overflow-hidden + object-cover removes letterboxing from PNG padding (object-contain preserved transparent top/bottom) */}
-        <div className="relative min-h-0 min-w-0 flex-1 overflow-hidden">
+      <div className="mx-auto flex h-14 max-w-[100vw] items-center justify-between">
+        <div className="flex min-w-0 shrink-0 items-center">
           <Image
             src="/princess-promotions-logo.png"
             alt="Princess Promotions"
-            fill
-            className="object-cover object-left"
-            sizes="(max-width: 1024px) 70vw, 560px"
+            width={673}
+            height={184}
+            className="block h-14 w-auto max-h-14 object-contain object-left"
             priority
           />
         </div>
