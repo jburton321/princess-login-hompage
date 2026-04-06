@@ -25,7 +25,3 @@ body {
 .font-great-vibes {
   font-family: var(--font-great-vibes), cursive;
 }
-
-.font-princess-serif {
-  font-family: var(--font-playfair), "Times New Roman", Times, serif;
-}
