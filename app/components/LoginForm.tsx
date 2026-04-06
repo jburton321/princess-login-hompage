@@ -93,6 +93,15 @@ export function LoginForm() {
       >
         LOGIN
       </button>
+
+      <div className="flex justify-center pt-1">
+        <a
+          href="tel:+18884030301"
+          className="text-center text-sm font-medium text-neutral-800 no-underline decoration-transparent visited:text-neutral-800 transition-colors hover:text-[var(--travel-primary)] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--travel-primary)] focus-visible:ring-offset-2"
+        >
+          Contact Support - +1 888 403 0301
+        </a>
+      </div>
     </form>
   );
 }
