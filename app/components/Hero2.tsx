@@ -8,22 +8,18 @@ import { LoginForm } from "./LoginForm";
 export function Hero2() {
   return (
     <section
-      className="flex w-full flex-col lg:min-h-screen lg:flex-row"
+      className="flex w-full flex-col lg:min-h-[75vh] lg:flex-row"
       aria-labelledby="hero2-left-heading"
     >
       <Hero2LeftPanel />
 
-      <div className="relative flex min-h-[28rem] flex-1 flex-col justify-center bg-white px-6 py-10 sm:px-12 sm:py-12 lg:min-h-0 lg:max-w-[50%]">
+      <div className="relative flex min-h-[28rem] flex-1 flex-col justify-center bg-[linear-gradient(180deg,#fdfefe_0%,#f3f8fd_100%)] px-6 py-10 sm:px-12 sm:py-12 lg:min-h-0 lg:max-w-[50%]">
         <div className="flex w-full shrink-0 justify-center">
-          <div className="flex w-full min-w-0 max-w-md shrink-0 flex-col items-center text-center">
-            <h2 className="m-0 font-pcl-display text-[44px] font-bold leading-[48px] tracking-normal text-[#1A365D]">
-              Welcome
+          <div className="ios-glass-panel ios-glass-panel-clear flex w-full min-w-0 max-w-md shrink-0 flex-col items-center rounded-[2rem] px-6 py-8 text-center sm:px-8 sm:py-10">
+            <h2 className="mb-6 font-pcl-display text-3xl font-black tracking-tight text-[#1A365D] sm:text-[2.2rem]">
+              Member Login
             </h2>
-            <p className="mt-2 text-sm font-medium text-[#666666]">Login with Email</p>
-
-            <div className="mt-10 w-full">
-              <LoginForm idPrefix="hero2-" variant="hero2" />
-            </div>
+            <LoginForm idPrefix="hero2-" variant="hero2" />
           </div>
         </div>
       </div>

@@ -38,12 +38,22 @@ function LockIcon({ className }: { className?: string }) {
   );
 }
 
-function FieldTrailingSquare() {
+function PhoneIcon({ className }: { className?: string }) {
   return (
-    <span
-      className="size-4 shrink-0 rounded-[2px] bg-[#8B4513]/85"
+    <svg
+      className={className ?? "size-4 shrink-0"}
+      viewBox="0 0 24 24"
+      fill="none"
       aria-hidden
-    />
+    >
+      <path
+        stroke="currentColor"
+        strokeWidth={1.75}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.63 2.62a2 2 0 0 1-.45 2.11L8 9.91a16 16 0 0 0 6.09 6.09l1.46-1.29a2 2 0 0 1 2.11-.45c.84.3 1.72.51 2.62.63A2 2 0 0 1 22 16.92Z"
+      />
+    </svg>
   );
 }
 
@@ -94,11 +104,10 @@ export function LoginForm({ idPrefix = "", variant = "default" }: LoginFormProps
   const emailId = `${idPrefix}email`;
   const passwordId = `${idPrefix}password`;
   const iconClass = variant === "hero2" ? "size-5 shrink-0 text-[#1A365D]" : undefined;
-  const trailing = variant === "hero2" ? <FieldTrailingSquare /> : undefined;
 
   return (
     <form className="flex w-full max-w-md flex-col gap-5" action="#" method="post">
-      <NotchedField id={emailId} label="Email Id" variant={variant} trailing={trailing}>
+      <NotchedField id={emailId} label="Email Id" variant={variant}>
         <EnvelopeIcon className={iconClass} />
         <input
           id={emailId}
@@ -111,7 +120,7 @@ export function LoginForm({ idPrefix = "", variant = "default" }: LoginFormProps
         />
       </NotchedField>
 
-      <NotchedField id={passwordId} label="Password" variant={variant} trailing={trailing}>
+      <NotchedField id={passwordId} label="Password" variant={variant}>
         <LockIcon className={iconClass} />
         <input
           id={passwordId}
@@ -144,16 +153,27 @@ export function LoginForm({ idPrefix = "", variant = "default" }: LoginFormProps
         LOGIN
       </button>
 
-      <div className="flex justify-center pt-1">
+      <button
+        type="button"
+        className="w-full cursor-pointer rounded-full border-2 border-[#ED2088] bg-transparent py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-[#ED2088] transition-[background-color,color,box-shadow,transform] hover:bg-[#ED2088]/8 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9177c]"
+      >
+        CREATE ACCOUNT
+      </button>
+
+      <div className="flex flex-col items-center gap-2 pt-1">
+        <p className="text-xs font-medium uppercase tracking-[0.08em] text-[#7A7A7A]">
+          Need help signing in?
+        </p>
         <a
           href="tel:+18884030301"
-          className={`text-center text-sm font-medium no-underline decoration-transparent transition-colors hover:text-[var(--pcl-hover-accent)] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
+          className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-center text-sm font-semibold no-underline transition-[border-color,background-color,color,transform] hover:-translate-y-0.5 hover:text-[var(--pcl-hover-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
             variant === "hero2"
-              ? "text-[#666666] visited:text-[#666666] focus-visible:ring-[#ED2088]"
-              : "text-[var(--pcl-neutral-dark)] visited:text-[var(--pcl-neutral-dark)] focus-visible:ring-[var(--pcl-pink)]"
+              ? "border-[#ED2088]/25 bg-[#ED2088]/6 text-[#555555] visited:text-[#555555] focus-visible:ring-[#ED2088]"
+              : "border-[var(--pcl-blue)]/15 bg-[var(--pcl-blue)]/4 text-[var(--pcl-neutral-dark)] visited:text-[var(--pcl-neutral-dark)] focus-visible:ring-[var(--pcl-pink)]"
           }`}
         >
-          Contact Support - +1 888 403 0301
+          <PhoneIcon className="size-4 shrink-0 text-[#ED2088]" />
+          <span>Call support: +1 888 403 0301</span>
         </a>
       </div>
     </form>
