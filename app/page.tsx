@@ -5,14 +5,6 @@ import { SiteHeader } from "./components/SiteHeader";
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2400&auto=format&fit=crop";
 
-const ACCOUNT_BENEFITS = [
-  "Receive personalized offers",
-  "Manage your tours and bookings",
-  "Access member-only deals and updates",
-  "Save travelers and payment methods",
-  "View and print itineraries & documents",
-];
-
 /** Same inset + centering as the login column so both max-w-md blocks line up. */
 const splitPanelInset =
   "flex min-h-0 flex-1 flex-col justify-center px-6 py-10 sm:px-12 sm:py-12";
@@ -20,23 +12,6 @@ const splitContentCenter = "flex w-full shrink-0 justify-center";
 const splitContentWidth = "flex w-full min-w-0 max-w-md shrink-0 flex-col items-center text-center";
 const splitContentWidthLeft =
   "flex w-full min-w-0 max-w-md shrink-0 flex-col items-start text-left";
-
-function BenefitCheckIcon() {
-  return (
-    <svg
-      className="mt-0.5 size-5 shrink-0 text-[var(--travel-check)]"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-      aria-hidden
-    >
-      <path
-        fillRule="evenodd"
-        d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
 
 export default function Home() {
   return (
@@ -68,18 +43,6 @@ export default function Home() {
                   Princess Promotions supports guests who have purchased promotional travel packages that may include
                   future cruise credits, hotel benefits, and other travel-related offers.
                 </p>
-
-                <div className="mt-10 w-full">
-                  <h3 className="text-lg font-bold text-white drop-shadow-sm">Create an account</h3>
-                  <ul className="mt-4 list-none space-y-3 text-sm leading-snug text-white/95">
-                    {ACCOUNT_BENEFITS.map((line) => (
-                      <li key={line} className="flex gap-3">
-                        <BenefitCheckIcon />
-                        <span>{line}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
