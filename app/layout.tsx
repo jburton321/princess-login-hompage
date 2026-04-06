@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Great_Vibes, Montserrat } from "next/font/google";
 import "./globals.css";
 
@@ -14,9 +14,21 @@ const greatVibes = Great_Vibes({
   weight: ["400"],
 });
 
+/** Aligned with https://www.princesspromotions.com/ initial HTML meta (title, description, viewport, theme-color, robots). */
 export const metadata: Metadata = {
-  title: "Welcome | Travelista Tours",
-  description: "Log in to your Travelista Tours account",
+  title: "Princess Promotions",
+  description:
+    "Exceptional savings on our curated collection of travel, leisure, and lifestyle products and services is only a few steps away!",
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
