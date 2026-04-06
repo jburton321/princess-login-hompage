@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  /** Matches https://www.princesspromotions.com/ — `<link rel="icon" href="/favicon.ico" />` */
+  icons: {
+    icon: [{ url: "/favicon.ico", type: "image/x-icon" }],
+    shortcut: "/favicon.ico",
+  },
 };
 
 /** PCL primary blue — matches browser chrome to brand when supported. */
