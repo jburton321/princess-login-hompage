@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function SiteHeader() {
   return (
-    <header className="relative z-30 shrink-0 border-t-[3px] border-[#3e2b2e] bg-[#113388]">
+    <header className="relative z-30 shrink-0 border-t-[3px] border-[#3e2b2e] border-b border-neutral-200 bg-white">
       <div className="mx-auto flex h-14 max-w-[100vw] items-stretch justify-between">
         <div className="relative h-full min-h-0 min-w-0 shrink">
           <Image
@@ -17,7 +17,7 @@ export function SiteHeader() {
         <div className="flex shrink-0 items-center pr-4 sm:pr-8 lg:pr-10">
           <button
             type="button"
-            className="flex size-8 items-center justify-center rounded-full border border-white/25 bg-white/10 transition hover:bg-white/20 sm:size-9"
+            className="flex size-8 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 transition hover:bg-neutral-200 sm:size-9"
             aria-label="United States — region or language"
           >
             <span className="text-base leading-none sm:text-lg" aria-hidden>
