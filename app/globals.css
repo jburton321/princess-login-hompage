@@ -61,3 +61,43 @@ body {
 .font-pcl-display {
   font-family: var(--font-pcl-display), system-ui, sans-serif;
 }
+
+/*
+ * Pink pill LOGIN — use plain CSS for :hover/:active so states aren’t dropped
+ * (Tailwind arbitrary hover + CSS variables can be flaky in some builds).
+ */
+.login-submit-btn {
+  background-color: var(--pcl-pink);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(233, 30, 140, 0.35);
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.login-submit-btn:hover {
+  background-color: color-mix(in srgb, var(--pcl-pink) 78%, white);
+  box-shadow: 0 4px 16px rgba(233, 30, 140, 0.48);
+}
+
+.login-submit-btn:active {
+  background-color: var(--pcl-pink-dark);
+  box-shadow: 0 1px 4px rgba(233, 30, 140, 0.45);
+  transform: scale(0.98);
+}
+
+.login-submit-btn:focus-visible {
+  outline: 2px solid var(--pcl-pink-dark);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .login-submit-btn {
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .login-submit-btn:active {
+    transform: none;
+  }
+}

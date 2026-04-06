@@ -90,10 +90,7 @@ export function LoginForm() {
         </a>
       </div>
 
-      <button
-        type="submit"
-        className="w-full rounded-full bg-[var(--pcl-pink)] py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-white shadow-[0_2px_8px_rgba(233,30,140,0.35)] transition-colors duration-200 hover:bg-[var(--pcl-pink-dark)] active:bg-[var(--pcl-pink-dark)]"
-      >
+      <button type="submit" className="login-submit-btn w-full rounded-full py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em]">
         LOGIN
       </button>
 
