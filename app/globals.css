@@ -21,7 +21,3 @@ body {
   color: var(--foreground);
   font-family: var(--font-montserrat), system-ui, sans-serif;
 }
-
-.font-great-vibes {
-  font-family: var(--font-great-vibes), cursive;
-}

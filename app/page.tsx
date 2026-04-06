@@ -57,11 +57,16 @@ export default function Home() {
           <div className={`relative z-10 ${splitPanelInset}`}>
             <div className={splitContentCenter}>
               <div className={splitContentWidthLeft}>
-                <h1 className="font-great-vibes text-4xl leading-tight text-white drop-shadow-md sm:text-5xl lg:text-6xl">
-                  Travelista Tours
+                <h1 className="text-3xl font-bold leading-tight tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-[2.25rem] lg:leading-snug">
+                  Welcome to Princess Promotions
                 </h1>
-                <p className="mt-6 text-sm font-medium leading-relaxed text-white/95 sm:text-base">
-                  Travel is the only purchase that enriches you in ways beyond material wealth
+                <p className="mt-5 text-base font-semibold leading-relaxed text-white sm:text-lg">
+                  Access your travel benefits, review your package, and get the support you need for your next
+                  experience.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-white/90 sm:text-base">
+                  Princess Promotions supports guests who have purchased promotional travel packages that may include
+                  future cruise credits, hotel benefits, and other travel-related offers.
                 </p>
 
                 <div className="mt-10 w-full">
