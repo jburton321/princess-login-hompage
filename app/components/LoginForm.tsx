@@ -45,7 +45,7 @@ function NotchedField({
       >
         {label}
       </label>
-      <div className="flex min-h-[52px] items-center gap-3 rounded-[6px] border-2 border-[var(--pcl-blue)] px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition focus-within:border-[var(--pcl-blue-light)] focus-within:ring-2 focus-within:ring-[var(--travel-border-soft)]">
+      <div className="flex min-h-[52px] items-center gap-3 rounded-[6px] border-2 border-[var(--pcl-blue)] bg-white px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-[border-color,box-shadow] hover:border-[var(--pcl-hover-accent)] focus-within:border-[var(--pcl-blue)] focus-within:ring-2 focus-within:ring-[var(--pcl-pink-ring)]">
         {children}
       </div>
     </div>
@@ -84,15 +84,16 @@ export function LoginForm() {
       <div className="flex justify-center">
         <a
           href="#"
-          className="text-xs font-medium text-[var(--pcl-grey)] no-underline transition-colors hover:text-[var(--pcl-blue-bright)]"
+          className="text-xs font-medium text-[var(--pcl-grey)] no-underline transition-colors hover:text-[var(--pcl-hover-accent)]"
         >
           Forgot your password?
         </a>
       </div>
 
+      {/* Pill outline CTA — matches FIND A CRUISE–style capsule; brand pink border */}
       <button
         type="submit"
-        className="w-full rounded-[6px] bg-[var(--pcl-blue)] py-3.5 text-center text-sm font-bold uppercase tracking-wider text-white shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-[var(--pcl-blue-light)]"
+        className="w-full rounded-full border-[3px] border-[var(--pcl-pink)] bg-white py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-[var(--pcl-neutral-dark)] shadow-none transition-colors duration-200 hover:bg-[var(--pcl-pink)] hover:text-white"
       >
         LOGIN
       </button>
@@ -100,7 +101,7 @@ export function LoginForm() {
       <div className="flex justify-center pt-1">
         <a
           href="tel:+18884030301"
-          className="text-center text-sm font-medium text-[var(--pcl-neutral-dark)] no-underline decoration-transparent visited:text-[var(--pcl-neutral-dark)] transition-colors hover:text-[var(--pcl-blue-bright)] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pcl-blue)] focus-visible:ring-offset-2"
+          className="text-center text-sm font-medium text-[var(--pcl-neutral-dark)] no-underline decoration-transparent visited:text-[var(--pcl-neutral-dark)] transition-colors hover:text-[var(--pcl-hover-accent)] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pcl-pink)] focus-visible:ring-offset-2"
         >
           Contact Support - +1 888 403 0301
         </a>

@@ -18,7 +18,7 @@ export function SiteHeader() {
         <div className="flex shrink-0 items-center pr-4 sm:pr-8 lg:pr-10">
           <button
             type="button"
-            className="flex size-8 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 transition hover:bg-neutral-200 sm:size-9"
+            className="flex size-8 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 transition-colors hover:border-[var(--pcl-hover-accent)] hover:bg-[var(--pcl-pink-surface-hover)] sm:size-9"
             aria-label="United States — region or language"
           >
             <span className="text-base leading-none sm:text-lg" aria-hidden>

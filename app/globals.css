@@ -28,6 +28,11 @@
   --pcl-pink: #e91e8c;
   --pcl-green: #00a651;
 
+  /* Promo / outline CTA pink — global hover & pill button (McKinley accent) */
+  --pcl-hover-accent: var(--pcl-pink);
+  --pcl-pink-ring: color-mix(in srgb, var(--pcl-pink) 32%, transparent);
+  --pcl-pink-surface-hover: color-mix(in srgb, var(--pcl-pink) 10%, transparent);
+
   /* App semantics (alias PCL for existing components) */
   --travel-primary: var(--pcl-blue);
   --travel-primary-hover: var(--pcl-blue-light);
