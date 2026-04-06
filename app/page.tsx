@@ -32,14 +32,14 @@ export default function Home() {
           <div className={`relative z-10 ${splitPanelInset}`}>
             <div className={splitContentCenter}>
               <div className={splitContentWidthLeft}>
-                <h1 className="text-3xl font-bold leading-tight tracking-tight text-white drop-shadow-sm sm:text-4xl lg:text-[2.25rem] lg:leading-snug">
+                <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-5xl lg:leading-[1.08] xl:text-6xl">
                   Welcome to Princess Promotions
                 </h1>
-                <p className="mt-5 text-base font-semibold leading-relaxed text-white sm:text-lg">
+                <p className="mt-6 max-w-prose text-lg font-semibold leading-snug text-white sm:text-xl sm:leading-snug">
                   Access your travel benefits, review your package, and get the support you need for your next
                   experience.
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-white/90 sm:text-base">
+                <p className="mt-5 max-w-prose text-sm font-normal leading-relaxed text-white/75 sm:text-[0.9375rem]">
                   Princess Promotions supports guests who have purchased promotional travel packages that may include
                   future cruise credits, hotel benefits, and other travel-related offers.
                 </p>
