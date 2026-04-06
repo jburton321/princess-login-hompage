@@ -41,11 +41,11 @@ function NotchedField({
     <div className="relative">
       <label
         htmlFor={id}
-        className="pointer-events-none absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-[var(--pcl-grey)]"
+        className="pointer-events-none absolute -top-2.5 left-5 z-10 bg-white px-1 text-xs font-semibold text-[var(--pcl-grey)]"
       >
         {label}
       </label>
-      <div className="flex min-h-[52px] items-center gap-3 rounded-[6px] border-2 border-[var(--pcl-blue)] bg-white px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-[border-color,box-shadow] hover:border-[var(--pcl-hover-accent)] focus-within:border-[var(--pcl-blue)] focus-within:ring-2 focus-within:ring-[var(--pcl-pink-ring)]">
+      <div className="flex min-h-[52px] items-center gap-3 rounded-full border-2 border-[var(--pcl-blue)] bg-white px-5 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-[border-color,box-shadow] hover:border-[var(--pcl-hover-accent)] focus-within:border-[var(--pcl-blue)] focus-within:ring-2 focus-within:ring-[var(--pcl-pink-ring)]">
         {children}
       </div>
     </div>
@@ -90,10 +90,9 @@ export function LoginForm() {
         </a>
       </div>
 
-      {/* Pill outline CTA — matches FIND A CRUISE–style capsule; brand pink border */}
       <button
         type="submit"
-        className="w-full rounded-full border-[3px] border-[var(--pcl-pink)] bg-white py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-[var(--pcl-neutral-dark)] shadow-none transition-colors duration-200 hover:bg-[var(--pcl-pink)] hover:text-white"
+        className="w-full rounded-full bg-[var(--pcl-pink)] py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-white shadow-[0_2px_8px_rgba(233,30,140,0.35)] transition-colors duration-200 hover:bg-[var(--pcl-pink-dark)] active:bg-[var(--pcl-pink-dark)]"
       >
         LOGIN
       </button>

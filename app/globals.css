@@ -26,6 +26,8 @@
   --pcl-gold: #c5a572;
   --pcl-red: #d4272e;
   --pcl-pink: #e91e8c;
+  /* Filled pink CTA hover / pressed */
+  --pcl-pink-dark: #c9177c;
   --pcl-green: #00a651;
 
   /* Promo / outline CTA pink — global hover & pill button (McKinley accent) */
