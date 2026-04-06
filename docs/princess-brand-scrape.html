@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Princess Cruises — Brand Scrape</title>
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Red+Hat+Display:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* ══════════════════════════════════════════
+       PRINCESS CRUISES — OFFICIAL BRAND COLORS
+       Source: PCL Brand Book (Feb 2020) + Site CSS
+       ══════════════════════════════════════════ */
+
+    /* Primary Palette */
+    --pcl-blue:           #00538B;  /* PMS 7462 C — Logo, headers, primary CTA */
+    --pcl-grey:           #54575A;  /* PMS Cool Gray 11 C — Logo text, body copy */
+    --pcl-white:          #FFFFFF;
+
+    /* Extended Web Palette (from site CSS) */
+    --pcl-blue-light:     #0067A5;  /* Hover states, lighter blue accents */
+    --pcl-blue-dark:      #003B5C;  /* Dark navy — footer, overlays */
+    --pcl-aux-blue-dark:  #002B49;  /* Auxiliary deep navy */
+    --pcl-blue-bright:    #0071C2;  /* Links, interactive elements */
+
+    /* Neutral System */
+    --pcl-primary-light:  #F5F5F5;
+    --pcl-primary-xlight: #FAFAFA;
+    --pcl-primary-medium: #E0E0E0;
+    --pcl-neutral-dark:   #333333;
+    --pcl-neutral-medium: #666666;
+    --pcl-neutral-light:  #999999;
+    --pcl-black:          #000000;
+
+    /* Accent Metallics */
+    --pcl-gold:           #C5A572;  /* Accent Gold — premium/luxury tier */
+    --pcl-gold-dark:      #A68B5B;  /* Accent Gold Dark */
+    --pcl-silver:         #A7A9AC;  /* Accent Silver */
+
+    /* Promotional / CTA */
+    --pcl-red:            #D4272E;  /* Sale badges, urgency CTAs */
+    --pcl-pink:           #E91E8C;  /* McKinley AI sparkle accent */
+    --pcl-spring-green:   #00A651;  /* Confirmation states */
+
+    /* Sanctuary Collection Sub-Brand */
+    --pcl-rose-gold:      #B08D6E;  /* Sanctuary Collection logo */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Red Hat Text', -apple-system, sans-serif;
+    background: #0A0E14;
+    color: #C8CCD4;
+    line-height: 1.6;
+  }
+
+  /* ── LAYOUT ── */
+  .page-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 80px 0 60px;
+    border-bottom: 1px solid rgba(0,83,139,0.2);
+    margin-bottom: 64px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 300px;
+    background: radial-gradient(ellipse at 30% 0%, rgba(0,83,139,0.15) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 0%, rgba(0,103,165,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--pcl-blue-bright);
+    background: rgba(0,113,194,0.1);
+    border: 1px solid rgba(0,113,194,0.2);
+    padding: 6px 14px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: #FFFFFF;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .hero h1 span {
+    color: var(--pcl-blue-light);
+  }
+  .hero p {
+    font-size: 16px;
+    max-width: 640px;
+    color: #8892A0;
+  }
+  .hero-meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .hero-meta div {
+    font-size: 12px;
+    color: #5A6270;
+  }
+  .hero-meta div strong {
+    color: #8892A0;
+  }
+
+  /* ── SECTION ── */
+  section {
+    margin-bottom: 72px;
+  }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--pcl-blue-bright);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 32px;
+    max-width: 600px;
+  }
+
+  /* ── COLOR GRID ── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .color-card {
+    background: #12171F;
+    border: 1px solid #1E2530;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .color-card:hover {
+    transform: translateY(-2px);
+    border-color: #2A3344;
+  }
+  .color-swatch {
+    height: 100px;
+    position: relative;
+  }
+  .color-swatch::after {
+    content: attr(data-hex);
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  }
+  .color-info {
+    padding: 14px 16px;
+  }
+  .color-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #E0E4EA;
+    margin-bottom: 2px;
+  }
+  .color-role {
+    font-size: 11px;
+    color: #5A6270;
+    line-height: 1.5;
+  }
+  .color-tokens {
+    margin-top: 8px;
+    font-size: 10px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #4A5260;
+    line-height: 1.6;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-specimens {
+    display: grid;
+    gap: 24px;
+  }
+  .type-card {
+    background: #12171F;
+    border: 1px solid #1E2530;
+    border-radius: 12px;
+    padding: 32px;
+  }
+  .type-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .type-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: rgba(0,113,194,0.1);
+    color: var(--pcl-blue-bright);
+    border: 1px solid rgba(0,113,194,0.15);
+  }
+  .type-tag.secondary {
+    background: rgba(197,165,114,0.1);
+    color: var(--pcl-gold);
+    border-color: rgba(197,165,114,0.15);
+  }
+  .type-meta {
+    font-size: 12px;
+    color: #5A6270;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+  .type-sample {
+    color: #E8ECF0;
+    margin-bottom: 16px;
+  }
+  .type-scale {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #1E2530;
+  }
+  .type-scale-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+  }
+  .type-scale-label {
+    font-size: 10px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: #4A5260;
+    min-width: 160px;
+    flex-shrink: 0;
+  }
+  .type-scale-sample {
+    color: #C8CCD4;
+  }
+
+  /* ── SVG SHAPES ── */
+  .shapes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .shape-card {
+    background: #12171F;
+    border: 1px solid #1E2530;
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    transition: border-color 0.2s;
+  }
+  .shape-card:hover {
+    border-color: #2A3344;
+  }
+  .shape-card svg {
+    margin-bottom: 20px;
+    max-height: 120px;
+  }
+  .shape-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #E0E4EA;
+    margin-bottom: 4px;
+  }
+  .shape-card p {
+    font-size: 12px;
+    color: #5A6270;
+    line-height: 1.5;
+  }
+
+  /* ── BRAND IDENTITY ── */
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .identity-card {
+    background: #12171F;
+    border: 1px solid #1E2530;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .identity-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pcl-blue-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  .identity-card p {
+    font-size: 13px;
+    color: #8892A0;
+    line-height: 1.6;
+  }
+
+  /* ── ASSET URLS ── */
+  .asset-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .asset-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #5A6270;
+    padding: 10px 16px;
+    border-bottom: 1px solid #1E2530;
+  }
+  .asset-table td {
+    font-size: 13px;
+    padding: 12px 16px;
+    border-bottom: 1px solid #14191F;
+    color: #8892A0;
+    vertical-align: top;
+  }
+  .asset-table td:first-child {
+    color: #C8CCD4;
+    font-weight: 500;
+  }
+  .asset-table td code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    color: #6B88A8;
+    word-break: break-all;
+  }
+  .asset-table tr:hover td {
+    background: rgba(0,83,139,0.04);
+  }
+
+  /* ── NOTES ── */
+  .note-box {
+    background: rgba(0,83,139,0.06);
+    border: 1px solid rgba(0,83,139,0.15);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-top: 16px;
+  }
+  .note-box h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--pcl-blue-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+  .note-box p {
+    font-size: 13px;
+    color: #6B7B8E;
+    line-height: 1.6;
+  }
+
+  /* ── COMBO PREVIEW ── */
+  .combo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .combo-card {
+    border-radius: 12px;
+    padding: 28px;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .combo-card h4 {
+    font-family: 'Red Hat Display', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .combo-card p {
+    font-size: 13px;
+    opacity: 0.8;
+    line-height: 1.5;
+  }
+  .combo-card .combo-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-top: 16px;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 32px; }
+    .section-title { font-size: 22px; }
+    .color-grid { grid-template-columns: repeat(2, 1fr); }
+    .page-wrap { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <header class="hero">
+    <div class="hero-badge">Brand Scrape</div>
+    <h1>Princess <span>Cruises</span></h1>
+    <p>Complete brand extraction covering color system, typography, SVG brand marks, identity guidelines, and live asset URLs from princess.com — ready for design integration.</p>
+    <div class="hero-meta">
+      <div><strong>Domain</strong><br>princess.com</div>
+      <div><strong>Parent</strong><br>Carnival Corporation</div>
+      <div><strong>Founded</strong><br>1965</div>
+      <div><strong>HQ</strong><br>Santa Clarita, CA</div>
+      <div><strong>Scraped</strong><br>April 2026</div>
+    </div>
+  </header>
+
+  <!-- ═══════════════ 01 — COLOR SYSTEM ═══════════════ -->
+  <section>
+    <div class="section-label">01 — Color System</div>
+    <div class="section-title">Primary Brand Palette</div>
+    <div class="section-desc">Official Pantone-matched colors from the PCL Brand Book. These two colors plus white form the entire logo system.</div>
+
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#00538B;" data-hex="#00538B"></div>
+        <div class="color-info">
+          <div class="color-name">Princess Blue</div>
+          <div class="color-role">Logo, headers, primary CTA, navigation</div>
+          <div class="color-tokens">PMS 7462 C<br>R0 G83 B139<br>C100 M71 Y22 K5</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#54575A;" data-hex="#54575A"></div>
+        <div class="color-info">
+          <div class="color-name">Princess Grey</div>
+          <div class="color-role">Logo wordmark, body copy, secondary text</div>
+          <div class="color-tokens">PMS Cool Gray 11 C<br>R84 G87 B90<br>C66 M56 Y53 K29</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#FFFFFF; border-bottom: 1px solid #1E2530;" data-hex="#FFFFFF"></div>
+        <div class="color-info">
+          <div class="color-name">White</div>
+          <div class="color-role">Backgrounds, reversed logo on dark</div>
+          <div class="color-tokens">R255 G255 B255</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label">01b — Extended Web Palette</div>
+    <div class="section-title">Site CSS Color Tokens</div>
+    <div class="section-desc">Extracted from the live princess.com style guide (Adobe AEM). These extend the core palette for digital use.</div>
+
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-swatch" style="background:#003B5C;" data-hex="#003B5C"></div>
+        <div class="color-info">
+          <div class="color-name">Blue Dark</div>
+          <div class="color-role">Footer, deep overlays, dark sections</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#002B49;" data-hex="#002B49"></div>
+        <div class="color-info">
+          <div class="color-name">Auxiliary Blue Dark</div>
+          <div class="color-role">Deepest navy tier</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0067A5;" data-hex="#0067A5"></div>
+        <div class="color-info">
+          <div class="color-name">Blue Light</div>
+          <div class="color-role">Hover states, lighter blue accents</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#0071C2;" data-hex="#0071C2"></div>
+        <div class="color-info">
+          <div class="color-name">Blue Bright</div>
+          <div class="color-role">Links, interactive elements</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#C5A572;" data-hex="#C5A572"></div>
+        <div class="color-info">
+          <div class="color-name">Accent Gold</div>
+          <div class="color-role">Premium tier, luxury accents</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A68B5B;" data-hex="#A68B5B"></div>
+        <div class="color-info">
+          <div class="color-name">Accent Gold Dark</div>
+          <div class="color-role">Pressed/hover gold state</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#A7A9AC;" data-hex="#A7A9AC"></div>
+        <div class="color-info">
+          <div class="color-name">Accent Silver</div>
+          <div class="color-role">Subtle metallic accent</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#B08D6E;" data-hex="#B08D6E"></div>
+        <div class="color-info">
+          <div class="color-name">Sanctuary Rose Gold</div>
+          <div class="color-role">Sanctuary Collection sub-brand</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#D4272E;" data-hex="#D4272E"></div>
+        <div class="color-info">
+          <div class="color-name">CTA Red</div>
+          <div class="color-role">Sale badges, urgency elements</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#E91E8C;" data-hex="#E91E8C"></div>
+        <div class="color-info">
+          <div class="color-name">McKinley Pink</div>
+          <div class="color-role">AI assistant sparkle accent</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#333333;" data-hex="#333333"></div>
+        <div class="color-info">
+          <div class="color-name">Neutral Dark</div>
+          <div class="color-role">Headings, primary text on light</div>
+        </div>
+      </div>
+      <div class="color-card">
+        <div class="color-swatch" style="background:#F5F5F5; border-bottom: 1px solid #1E2530;" data-hex="#F5F5F5"></div>
+        <div class="color-info">
+          <div class="color-name">Primary Light</div>
+          <div class="color-role">Section backgrounds, cards</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 02 — TYPOGRAPHY ═══════════════ -->
+  <section>
+    <div class="section-label">02 — Typography</div>
+    <div class="section-title">Font System</div>
+    <div class="section-desc">Princess uses two typeface families across web and print, plus a legacy logo typeface.</div>
+
+    <div class="type-specimens">
+      <!-- Red Hat Display -->
+      <div class="type-card">
+        <div class="type-card-header">
+          <div>
+            <span class="type-tag">Primary — Display</span>
+          </div>
+          <div class="type-meta">Google Fonts · Free</div>
+        </div>
+        <div class="type-sample" style="font-family:'Red Hat Display',sans-serif; font-size:40px; font-weight:900; line-height:1.1;">
+          Red Hat Display
+        </div>
+        <div class="type-sample" style="font-family:'Red Hat Display',sans-serif; font-size:18px; font-weight:400; color:#8892A0;">
+          Used for headlines, hero text, section titles, and promotional lockups across the site.
+        </div>
+        <div class="type-scale">
+          <div class="type-scale-row">
+            <span class="type-scale-label">H1 — 40-48px / 900</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Display',sans-serif; font-size:24px; font-weight:900;">Princess Cruises Vacations</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">H2 — 28-32px / 700</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Display',sans-serif; font-size:20px; font-weight:700;">Save Big On Cruises Near You</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">H3 — 20-24px / 700</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Display',sans-serif; font-size:17px; font-weight:700;">Alaska Inside Passage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Red Hat Text -->
+      <div class="type-card">
+        <div class="type-card-header">
+          <div>
+            <span class="type-tag secondary">Secondary — Body</span>
+          </div>
+          <div class="type-meta">Google Fonts · Free</div>
+        </div>
+        <div class="type-sample" style="font-family:'Red Hat Text',sans-serif; font-size:32px; font-weight:500; line-height:1.2;">
+          Red Hat Text
+        </div>
+        <div class="type-sample" style="font-family:'Red Hat Text',sans-serif; font-size:16px; font-weight:400; color:#8892A0;">
+          Body copy, navigation, captions, form labels, CTAs. The workhorse of the digital brand.
+        </div>
+        <div class="type-scale">
+          <div class="type-scale-row">
+            <span class="type-scale-label">XL Body — 20px / 400</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Text',sans-serif; font-size:18px;">Experience glaciers, national parks and wildlife.</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">L Body — 18px / 400</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Text',sans-serif; font-size:16px;">Prices include taxes and fees per person.</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">M Body — 16px / 400</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Text',sans-serif; font-size:14px;">View cruises from your nearest departure port.</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">S Body — 14px / 400</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Text',sans-serif; font-size:13px;">Terms and conditions apply.</span>
+          </div>
+          <div class="type-scale-row">
+            <span class="type-scale-label">Eyebrow — 16px / 700 / UC</span>
+            <span class="type-scale-sample" style="font-family:'Red Hat Text',sans-serif; font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">PRINCESS CRUISES VACATIONS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trajan — Logo Only -->
+      <div class="type-card">
+        <div class="type-card-header">
+          <div>
+            <span class="type-tag">Logo Typeface</span>
+          </div>
+          <div class="type-meta">Adobe · Commercial License</div>
+        </div>
+        <div class="type-sample" style="font-family:Georgia,'Times New Roman',serif; font-size:36px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; line-height:1.2; color:#E0E4EA;">
+          PRINCESS
+        </div>
+        <div class="type-sample" style="font-family:'Red Hat Text',sans-serif; font-size:14px; color:#6B7280; margin-top:8px;">
+          <strong style="color:#8892A0;">Trajan Bold</strong> — Carol Twombly, 1989 (Adobe). All-capitals serif used exclusively in the logo wordmark. Not used in running text.
+        </div>
+        <div style="font-family:'Red Hat Text',sans-serif; font-size:13px; color:#5A6270; margin-top:12px;">
+          Former tagline "come back new" set in <strong style="color:#8892A0;">Pill Gothic 300mg Regular</strong> (Christian Robertson). Currently not prominent on site.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 03 — SVG BRAND SHAPES ═══════════════ -->
+  <section>
+    <div class="section-label">03 — SVG Brand Shapes</div>
+    <div class="section-title">Logo Mark and Graphic Elements</div>
+    <div class="section-desc">Reconstructed SVG approximations of key brand marks based on the brand book and site assets.</div>
+
+    <div class="shapes-grid">
+      <!-- Sea Witch / "Our Princess" Mark -->
+      <div class="shape-card">
+        <svg viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" width="160">
+          <!-- Crown/Tiara -->
+          <g fill="none" stroke="#00538B" stroke-width="2.5" stroke-linecap="round">
+            <path d="M72 58 L78 42 L84 55" />
+            <path d="M84 55 L92 36 L100 55" />
+            <path d="M100 55 L108 42 L114 58" />
+          </g>
+          <!-- Head silhouette -->
+          <ellipse cx="93" cy="78" rx="22" ry="26" fill="#00538B" />
+          <!-- Flowing hair / wave lines -->
+          <g fill="none" stroke="#00538B" stroke-width="3" stroke-linecap="round">
+            <path d="M115 72 C125 68, 140 70, 155 62 C162 58, 168 60, 175 55" />
+            <path d="M115 82 C128 78, 142 82, 158 74 C165 70, 172 73, 180 68" />
+            <path d="M112 92 C126 90, 140 94, 156 88 C164 84, 172 87, 182 82" />
+          </g>
+          <!-- PRINCESS wordmark -->
+          <text x="100" y="140" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-size="22" font-weight="700" letter-spacing="5" fill="#54575A">PRINCESS</text>
+          <!-- Registred mark -->
+          <text x="166" y="130" font-family="Arial,sans-serif" font-size="7" fill="#54575A">®</text>
+        </svg>
+        <h4>Sea Witch Logo Mark</h4>
+        <p>The "Our Princess" — a woman's silhouette with flowing hair becoming ocean waves, crowned with a tiara. The central brand icon, used on hulls and standalone branding.</p>
+      </div>
+
+      <!-- Wave Lines Pattern -->
+      <div class="shape-card">
+        <svg viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg" width="180">
+          <g fill="none" stroke="#00538B" stroke-width="2.5" stroke-linecap="round">
+            <path d="M10 30 C30 20, 50 40, 70 30 C90 20, 110 40, 130 30 C150 20, 170 40, 190 30" />
+            <path d="M10 50 C30 40, 50 60, 70 50 C90 40, 110 60, 130 50 C150 40, 170 60, 190 50" />
+            <path d="M10 70 C30 60, 50 80, 70 70 C90 60, 110 80, 130 70 C150 60, 170 80, 190 70" />
+            <path d="M10 90 C30 80, 50 100, 70 90 C90 80, 110 100, 130 90 C150 80, 170 100, 190 90" opacity="0.5" />
+          </g>
+        </svg>
+        <h4>Wave Line Motif</h4>
+        <p>Signature horizontal wave pattern derived from the sea witch's flowing hair. Used as section dividers, background texture, and decorative accents across print and digital.</p>
+      </div>
+
+      <!-- Tiara/Crown Element -->
+      <div class="shape-card">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" width="160">
+          <g fill="none" stroke="#C5A572" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M40 70 L55 30 L70 55 L85 18 L100 55 L115 30 L130 55 L145 18 L160 70" />
+            <line x1="38" y1="70" x2="162" y2="70" />
+            <!-- Jewel dots -->
+            <circle cx="55" cy="30" r="3" fill="#C5A572" />
+            <circle cx="85" cy="18" r="3.5" fill="#C5A572" />
+            <circle cx="115" cy="30" r="3" fill="#C5A572" />
+            <circle cx="145" cy="18" r="3.5" fill="#C5A572" />
+          </g>
+        </svg>
+        <h4>Tiara Crown</h4>
+        <p>The crown element isolated from the sea witch mark. Appears in gold for premium tiers (Sanctuary Collection, Suites) and in blue for standard branding contexts.</p>
+      </div>
+
+      <!-- Medallion Shape -->
+      <div class="shape-card">
+        <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" width="140">
+          <circle cx="100" cy="80" r="55" fill="none" stroke="#00538B" stroke-width="2" />
+          <circle cx="100" cy="80" r="48" fill="none" stroke="#00538B" stroke-width="1" opacity="0.4" />
+          <text x="100" y="76" text-anchor="middle" font-family="Georgia,serif" font-size="10" font-weight="700" letter-spacing="3" fill="#00538B">MEDALLION</text>
+          <text x="100" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="8" letter-spacing="2" fill="#54575A">CLASS</text>
+          <!-- Inner lines -->
+          <line x1="68" y1="68" x2="132" y2="68" stroke="#00538B" stroke-width="0.5" />
+          <line x1="70" y1="94" x2="130" y2="94" stroke="#00538B" stroke-width="0.5" />
+        </svg>
+        <h4>MedallionClass Badge</h4>
+        <p>Circular badge form used for the MedallionClass wearable tech branding. Double-ring motif with centered type. Used in icons, app UI, and on-ship signage.</p>
+      </div>
+
+      <!-- Ship Silhouette -->
+      <div class="shape-card">
+        <svg viewBox="0 0 240 120" xmlns="http://www.w3.org/2000/svg" width="200">
+          <g fill="#00538B">
+            <!-- Hull -->
+            <path d="M20 85 L30 70 L210 70 L220 85 Q200 95 120 95 Q40 95 20 85Z" opacity="0.9" />
+            <!-- Superstructure -->
+            <rect x="50" y="48" width="140" height="22" rx="2" opacity="0.7" />
+            <rect x="65" y="32" width="110" height="16" rx="2" opacity="0.55" />
+            <rect x="80" y="20" width="80" height="12" rx="1" opacity="0.4" />
+            <!-- Funnel -->
+            <rect x="145" y="8" width="20" height="12" rx="1" opacity="0.6" />
+            <!-- Sea witch on hull -->
+            <circle cx="175" cy="77" r="6" fill="white" opacity="0.3" />
+          </g>
+          <!-- Water line -->
+          <path d="M5 95 C25 90, 45 100, 65 95 C85 90, 105 100, 125 95 C145 90, 165 100, 185 95 C205 90, 225 100, 235 95" fill="none" stroke="#0067A5" stroke-width="1.5" opacity="0.4" />
+        </svg>
+        <h4>Ship Profile</h4>
+        <p>Stylized cruise ship silhouette used in destination cards, itinerary graphics, and promotional materials. The sea witch appears prominently on the hull of all vessels.</p>
+      </div>
+
+      <!-- Compass Rose -->
+      <div class="shape-card">
+        <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" width="120">
+          <g transform="translate(80,80)">
+            <!-- Outer ring -->
+            <circle r="60" fill="none" stroke="#00538B" stroke-width="1.5" opacity="0.3" />
+            <!-- Main points -->
+            <g fill="#00538B">
+              <polygon points="0,-55 6,-15 0,-20 -6,-15" /> <!-- N -->
+              <polygon points="55,0 15,6 20,0 15,-6" />     <!-- E -->
+              <polygon points="0,55 6,15 0,20 -6,15" />     <!-- S -->
+              <polygon points="-55,0 -15,6 -20,0 -15,-6" /> <!-- W -->
+            </g>
+            <!-- Secondary points -->
+            <g fill="#00538B" opacity="0.4">
+              <polygon points="38,-38 10,-6 6,-10" />
+              <polygon points="38,38 6,10 10,6" />
+              <polygon points="-38,38 -10,6 -6,10" />
+              <polygon points="-38,-38 -6,-10 -10,-6" />
+            </g>
+            <!-- Center -->
+            <circle r="4" fill="#00538B" />
+            <circle r="2" fill="#0A0E14" />
+          </g>
+          <!-- Labels -->
+          <text x="80" y="14" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#54575A">N</text>
+          <text x="80" y="156" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#54575A">S</text>
+          <text x="152" y="84" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#54575A">E</text>
+          <text x="8" y="84" text-anchor="middle" font-family="Georgia,serif" font-size="9" font-weight="700" fill="#54575A">W</text>
+        </svg>
+        <h4>Compass Rose</h4>
+        <p>Navigational motif used in destination exploration contexts, itinerary maps, and wayfinding graphics. Reflects the brand's explorer heritage.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 04 — COLOR COMBOS ═══════════════ -->
+  <section>
+    <div class="section-label">04 — Color Combinations</div>
+    <div class="section-title">Pairings in Use</div>
+    <div class="section-desc">Common background/foreground combinations observed across the live site.</div>
+
+    <div class="combo-grid">
+      <div class="combo-card" style="background:#00538B; color:#FFFFFF;">
+        <div>
+          <h4>Primary CTA</h4>
+          <p>White text on Princess Blue. Primary buttons, hero overlays, navigation bar background.</p>
+        </div>
+        <div class="combo-label">Blue #00538B + White</div>
+      </div>
+      <div class="combo-card" style="background:#FFFFFF; color:#333333; border: 1px solid #E0E0E0;">
+        <div>
+          <h4 style="color:#00538B;">Content Cards</h4>
+          <p>Blue headings with dark body text on white. The dominant content pattern across all pages.</p>
+        </div>
+        <div class="combo-label" style="color:#999;">White + Blue Headers + #333 Body</div>
+      </div>
+      <div class="combo-card" style="background:#003B5C; color:#FFFFFF;">
+        <div>
+          <h4>Footer / Dark Sections</h4>
+          <p>White and light grey text on deep navy. Footer, deep promotional sections.</p>
+        </div>
+        <div class="combo-label">Navy #003B5C + White</div>
+      </div>
+      <div class="combo-card" style="background:#F5F5F5; color:#333333; border: 1px solid #E0E0E0;">
+        <div>
+          <h4 style="color:#54575A;">Alternate Sections</h4>
+          <p>Light grey backgrounds to create visual rhythm between white content sections.</p>
+        </div>
+        <div class="combo-label" style="color:#999;">Light #F5F5F5 + Grey Text</div>
+      </div>
+      <div class="combo-card" style="background:linear-gradient(135deg, #C5A572, #A68B5B); color:#FFFFFF;">
+        <div>
+          <h4>Premium / Luxury Tier</h4>
+          <p>Gold gradient with white text. Used for Sanctuary Collection, suite-level CTAs, and loyalty tiers.</p>
+        </div>
+        <div class="combo-label">Gold Gradient + White</div>
+      </div>
+      <div class="combo-card" style="background:#D4272E; color:#FFFFFF;">
+        <div>
+          <h4>Sale / Urgency</h4>
+          <p>Red badges and banners with white text. Spring Savings, last-minute deals, promotional lockups.</p>
+        </div>
+        <div class="combo-label">Red #D4272E + White</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 05 — BRAND IDENTITY ═══════════════ -->
+  <section>
+    <div class="section-label">05 — Brand Identity</div>
+    <div class="section-title">Positioning and Personality</div>
+    <div class="section-desc">Key brand strategy extracted from the official PCL Brand Book (Feb 2020).</div>
+
+    <div class="identity-grid">
+      <div class="identity-card">
+        <h4>Archetype</h4>
+        <p>The Everyperson — relatable, inclusive, down-to-earth. Not elitist. A quiet leader who is hard-working, collaborative, irresistibly likable and empathetic without being touchy-feely.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Brand Promise</h4>
+        <p>Help you connect to what matters most — your loved ones, the destinations you visit, and new friends.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Shared Purpose</h4>
+        <p>Share our world, share our hearts, protect our Earth, and create lasting memories.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Voice Persona</h4>
+        <p>"Charming Fellow Traveler and Friend" — happy, relatable, well-traveled but never a bore. Contagious enthusiasm without being annoying. A glass of wine away from sassy.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Target Audience</h4>
+        <p>The Meaningful Traveler — seeks connection with loved ones, cultures, and shared experiences. Well-balanced, people-people who know the world is better experienced together.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Brand Qualities</h4>
+        <p>Genuine, Engaging, Innovative, Happy, Passionate, Expert. Copy should be grounded and relatable, not elitist or overly hip.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Copy Don'ts</h4>
+        <p>No clichés, no puns, no cutesy language, no long feature lists, no flowery/dramatic prose. Write simply so it can be appreciated by all.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Sea Witch Identity</h4>
+        <p>"Our Princess is not some mythological sea creature or aloof member of royalty. She's real and relatable." Her hair represents connection — a ripple turning into a wave.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 06 — LIVE ASSET URLs ═══════════════ -->
+  <section>
+    <div class="section-label">06 — Live Asset URLs</div>
+    <div class="section-title">Sourced Assets</div>
+    <div class="section-desc">Direct URLs to brand assets currently served on princess.com.</div>
+
+    <div style="overflow-x:auto;">
+      <table class="asset-table">
+        <thead>
+          <tr>
+            <th>Asset</th>
+            <th>URL</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Primary Logo (full)</td>
+            <td><code>princess.com/content/dam/princess/cfm-assets-demo/Princess%20logo%20redesign.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>Brand Book PDF</td>
+            <td><code>princess-cruises.dk/sites/default/files/pdf/pcl_brand_book_mvp.pdf</code></td>
+            <td>PDF</td>
+          </tr>
+          <tr>
+            <td>Subscribe Icon</td>
+            <td><code>princess.com/content/dam/princess/cfm-assets-demo/suscribe_icon.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>User Account Icon</td>
+            <td><code>princess.com/content/dam/princess/cfm-assets-demo/userIcon.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>America 250 Logo</td>
+            <td><code>princess.com/content/dam/princess/destination/alaska/NavyRed_250_MainLogo.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>Sanctuary Collection Logo</td>
+            <td><code>princess.com/content/dam/princess/corporate/icons/Sanctuary-Logo-01_SC-Collection-RoseGold1.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>McKinley AI Sparkle</td>
+            <td><code>princess.com/content/dam/princess/corporate/icons/sparkle-pink.svg</code></td>
+            <td>SVG</td>
+          </tr>
+          <tr>
+            <td>Spring Sale Lockup (white)</td>
+            <td><code>princess.com/content/dam/princess/homepage/hero/march-2026/us/mar-31-apr-2-lockup-white.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>Spring Sale Lockup (blue)</td>
+            <td><code>princess.com/content/dam/princess/homepage/hero/march-2026/us/mar-31-apr-2-lockup-blue.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>Hero Video (desktop)</td>
+            <td><code>princess.com/content/dam/hero-v2-assets/fy26-q2-spring-web-hp-30.mp4</code></td>
+            <td>MP4</td>
+          </tr>
+          <tr>
+            <td>Hero Video (mobile)</td>
+            <td><code>princess.com/content/dam/hero-v2-assets/fy26-q2-spring-web-mb-30-v2.mp4</code></td>
+            <td>MP4</td>
+          </tr>
+          <tr>
+            <td>App Store Badge</td>
+            <td><code>princess.com/content/dam/princess/corporate/icons/badge-apple-app-store.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>Google Play Badge</td>
+            <td><code>princess.com/content/dam/princess/corporate/icons/badge-google-play-store.png</code></td>
+            <td>PNG</td>
+          </tr>
+          <tr>
+            <td>Image CDN Base</td>
+            <td><code>assets.princess.com/is/image/princesscruises/</code></td>
+            <td>Dynamic</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note-box">
+      <h4>Image CDN Note</h4>
+      <p>Princess uses Adobe Dynamic Media (Scene7) for responsive imagery. Append image name + format suffix to the CDN base. Example: <code>assets.princess.com/is/image/princesscruises/whale-fin-sunset:16x9</code> — supported ratios include 16x9, 4x5-Portrait, 1x1-Square.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════ 07 — CSS VARIABLES ═══════════════ -->
+  <section>
+    <div class="section-label">07 — Ready-to-Use</div>
+    <div class="section-title">CSS Custom Properties</div>
+    <div class="section-desc">Copy-paste token set for your project. Includes all extracted colors plus typography stacks.</div>
+
+    <div class="type-card" style="font-family:'SF Mono','Fira Code','Courier New',monospace; font-size:12.5px; line-height:1.8; color:#7B8DA0; white-space:pre-wrap; overflow-x:auto;">:root {
+  <span style="color:#5A8A5A;">/* ── Princess Blue System ── */</span>
+  --pcl-blue:            <span style="color:#6BAED6;">#00538B</span>;
+  --pcl-blue-light:      <span style="color:#6BAED6;">#0067A5</span>;
+  --pcl-blue-dark:       <span style="color:#6BAED6;">#003B5C</span>;
+  --pcl-blue-aux-dark:   <span style="color:#6BAED6;">#002B49</span>;
+  --pcl-blue-bright:     <span style="color:#6BAED6;">#0071C2</span>;
+
+  <span style="color:#5A8A5A;">/* ── Neutrals ── */</span>
+  --pcl-grey:            <span style="color:#6BAED6;">#54575A</span>;
+  --pcl-black:           <span style="color:#6BAED6;">#000000</span>;
+  --pcl-neutral-dark:    <span style="color:#6BAED6;">#333333</span>;
+  --pcl-neutral-medium:  <span style="color:#6BAED6;">#666666</span>;
+  --pcl-neutral-light:   <span style="color:#6BAED6;">#999999</span>;
+  --pcl-surface:         <span style="color:#6BAED6;">#F5F5F5</span>;
+  --pcl-surface-light:   <span style="color:#6BAED6;">#FAFAFA</span>;
+  --pcl-border:          <span style="color:#6BAED6;">#E0E0E0</span>;
+  --pcl-white:           <span style="color:#6BAED6;">#FFFFFF</span>;
+
+  <span style="color:#5A8A5A;">/* ── Accents ── */</span>
+  --pcl-gold:            <span style="color:#6BAED6;">#C5A572</span>;
+  --pcl-gold-dark:       <span style="color:#6BAED6;">#A68B5B</span>;
+  --pcl-silver:          <span style="color:#6BAED6;">#A7A9AC</span>;
+  --pcl-rose-gold:       <span style="color:#6BAED6;">#B08D6E</span>;
+  --pcl-red:             <span style="color:#6BAED6;">#D4272E</span>;
+  --pcl-pink:            <span style="color:#6BAED6;">#E91E8C</span>;
+  --pcl-green:           <span style="color:#6BAED6;">#00A651</span>;
+
+  <span style="color:#5A8A5A;">/* ── Typography ── */</span>
+  --pcl-font-display:    'Red Hat Display', system-ui, sans-serif;
+  --pcl-font-body:       'Red Hat Text', system-ui, sans-serif;
+  --pcl-font-logo:       'Trajan Pro', Georgia, serif;
+}</div>
+  </section>
+
+  <!-- ═══════════════ 08 — UI PATTERNS ═══════════════ -->
+  <section style="margin-bottom: 120px;">
+    <div class="section-label">08 — UI Patterns</div>
+    <div class="section-title">Component Observations</div>
+    <div class="section-desc">Key UI patterns and design decisions observed across the live site.</div>
+
+    <div class="identity-grid">
+      <div class="identity-card">
+        <h4>Border Radius</h4>
+        <p>Cards use 8-12px radius. Buttons use 4-6px. No fully rounded pills on primary CTAs — they stay rectangular with slight rounding.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Card Shadows</h4>
+        <p>Light and subtle. Typically 0 2px 8px rgba(0,0,0,0.08). No heavy drop shadows. Elevation is communicated through background color shifts rather than shadows.</p>
+      </div>
+      <div class="identity-card">
+        <h4>CTA Buttons</h4>
+        <p>Solid Princess Blue (#00538B) background with white text. No outlines or ghosts for primary CTA. Secondary CTAs use outlined/bordered style with blue text.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Carousel Pattern</h4>
+        <p>Horizontal scroll carousels are the primary content pattern. Slide counter shows "01 / 06" format. Auto-advance with manual navigation dots and arrows.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Image Treatment</h4>
+        <p>Scene7 CDN with aspect ratio modifiers (16x9, 4x5, 1x1). Images are crisp, warm, interpersonal — showing connection between people rather than solo travelers. Lighting is soft and natural.</p>
+      </div>
+      <div class="identity-card">
+        <h4>Platform</h4>
+        <p>Adobe Experience Manager (AEM) as CMS. Adobe Dynamic Media (Scene7) for image delivery. Custom component library with horizontal scroll patterns prominent throughout.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
