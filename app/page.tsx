@@ -32,7 +32,7 @@ export default function Home() {
           <div className={`relative z-10 ${splitPanelInset}`}>
             <div className={splitContentCenter}>
               <div className={splitContentWidthLeft}>
-                <h1 className="text-4xl font-bold leading-[1.1] tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-5xl lg:leading-[1.08] xl:text-6xl">
+                <h1 className="font-pcl-display text-4xl font-black leading-[1.1] tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-5xl lg:leading-[1.08] xl:text-[3rem]">
                   Welcome to Princess Promotions
                 </h1>
                 <p className="mt-6 max-w-prose text-lg font-semibold leading-snug text-white sm:text-xl sm:leading-snug">
@@ -49,12 +49,14 @@ export default function Home() {
         </div>
 
         {/* Right — login */}
-        <div className="relative flex min-h-0 flex-1 flex-col bg-white lg:max-w-[50%]">
+        <div className="relative flex min-h-0 flex-1 flex-col bg-[var(--pcl-white)] lg:max-w-[50%]">
           <div className={splitPanelInset}>
             <div className={splitContentCenter}>
               <div className={splitContentWidth}>
-                <h2 className="text-4xl font-bold tracking-tight text-[var(--travel-primary)] sm:text-5xl">Welcome</h2>
-                <p className="mt-2 text-sm font-medium text-[var(--travel-text-muted)]">Login with Email</p>
+                <h2 className="font-pcl-display text-4xl font-bold tracking-tight text-[var(--pcl-blue)] sm:text-5xl">
+                  Welcome
+                </h2>
+                <p className="mt-2 text-sm font-medium text-[var(--pcl-grey)]">Login with Email</p>
 
                 <div className="mt-10 w-full">
                   <LoginForm />

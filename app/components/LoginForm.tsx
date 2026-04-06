@@ -2,7 +2,7 @@
 
 function EnvelopeIcon() {
   return (
-    <svg className="size-5 shrink-0 text-[var(--travel-primary)]" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg className="size-5 shrink-0 text-[var(--pcl-blue)]" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path
         stroke="currentColor"
         strokeWidth={1.75}
@@ -16,7 +16,7 @@ function EnvelopeIcon() {
 
 function LockIcon() {
   return (
-    <svg className="size-5 shrink-0 text-[var(--travel-primary)]" viewBox="0 0 24 24" fill="none" aria-hidden>
+    <svg className="size-5 shrink-0 text-[var(--pcl-blue)]" viewBox="0 0 24 24" fill="none" aria-hidden>
       <path
         stroke="currentColor"
         strokeWidth={1.75}
@@ -41,11 +41,11 @@ function NotchedField({
     <div className="relative">
       <label
         htmlFor={id}
-        className="pointer-events-none absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-neutral-500"
+        className="pointer-events-none absolute -top-2.5 left-3 z-10 bg-white px-1 text-xs font-semibold text-[var(--pcl-grey)]"
       >
         {label}
       </label>
-      <div className="flex min-h-[52px] items-center gap-3 rounded-lg border-2 border-[var(--travel-primary)] px-4 py-3 shadow-sm transition focus-within:border-[var(--travel-primary-hover)] focus-within:ring-2 focus-within:ring-[var(--travel-border-soft)]">
+      <div className="flex min-h-[52px] items-center gap-3 rounded-[6px] border-2 border-[var(--pcl-blue)] px-4 py-3 shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition focus-within:border-[var(--pcl-blue-light)] focus-within:ring-2 focus-within:ring-[var(--travel-border-soft)]">
         {children}
       </div>
     </div>
@@ -64,7 +64,7 @@ export function LoginForm() {
           autoComplete="email"
           placeholder="thisuix@mail.com"
           required
-          className="min-w-0 flex-1 border-0 bg-transparent text-sm text-neutral-800 outline-none placeholder:text-neutral-400"
+          className="min-w-0 flex-1 border-0 bg-transparent text-sm text-[var(--pcl-neutral-dark)] outline-none placeholder:text-[var(--pcl-neutral-light)]"
         />
       </NotchedField>
 
@@ -77,19 +77,22 @@ export function LoginForm() {
           autoComplete="current-password"
           placeholder="••••••••"
           required
-          className="min-w-0 flex-1 border-0 bg-transparent text-sm text-neutral-800 outline-none placeholder:text-neutral-400"
+          className="min-w-0 flex-1 border-0 bg-transparent text-sm text-[var(--pcl-neutral-dark)] outline-none placeholder:text-[var(--pcl-neutral-light)]"
         />
       </NotchedField>
 
       <div className="flex justify-center">
-        <a href="#" className="text-xs font-medium text-[var(--travel-text-muted)] hover:text-[var(--travel-primary)]">
+        <a
+          href="#"
+          className="text-xs font-medium text-[var(--pcl-grey)] no-underline transition-colors hover:text-[var(--pcl-blue-bright)]"
+        >
           Forgot your password?
         </a>
       </div>
 
       <button
         type="submit"
-        className="w-full rounded-lg bg-[var(--travel-primary)] py-3.5 text-center text-sm font-bold uppercase tracking-wider text-white shadow-md shadow-[var(--travel-primary)]/25 transition hover:bg-[var(--travel-primary-hover)]"
+        className="w-full rounded-[6px] bg-[var(--pcl-blue)] py-3.5 text-center text-sm font-bold uppercase tracking-wider text-white shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition hover:bg-[var(--pcl-blue-light)]"
       >
         LOGIN
       </button>
@@ -97,7 +100,7 @@ export function LoginForm() {
       <div className="flex justify-center pt-1">
         <a
           href="tel:+18884030301"
-          className="text-center text-sm font-medium text-neutral-800 no-underline decoration-transparent visited:text-neutral-800 transition-colors hover:text-[var(--travel-primary)] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--travel-primary)] focus-visible:ring-offset-2"
+          className="text-center text-sm font-medium text-[var(--pcl-neutral-dark)] no-underline decoration-transparent visited:text-[var(--pcl-neutral-dark)] transition-colors hover:text-[var(--pcl-blue-bright)] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--pcl-blue)] focus-visible:ring-offset-2"
         >
           Contact Support - +1 888 403 0301
         </a>
