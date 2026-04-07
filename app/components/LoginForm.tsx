@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 function EnvelopeIcon({ className }: { className?: string }) {
   return (
     <svg
@@ -72,7 +74,7 @@ function NotchedField({
 }) {
   const shellClasses =
     variant === "hero2"
-      ? "border-[#1A365D] hover:border-[#1A365D] focus-within:border-[#1A365D] focus-within:ring-2 focus-within:ring-[#ED2088]/35"
+      ? "border-[var(--pcl-blue)] hover:border-[var(--pcl-blue)] focus-within:border-[var(--pcl-blue)] focus-within:ring-2 focus-within:ring-[var(--pcl-pink-ring)]"
       : "border-[var(--pcl-blue)] hover:border-[var(--pcl-hover-accent)] focus-within:border-[var(--pcl-blue)] focus-within:ring-2 focus-within:ring-[var(--pcl-pink-ring)]";
 
   return (
@@ -96,17 +98,57 @@ function NotchedField({
 export type LoginFormProps = {
   /** Prefix for input `id`s when multiple forms exist on one page (e.g. `hero2-`). */
   idPrefix?: string;
-  /** `hero2` matches the alternate split-panel reference (navy borders, #ED2088 CTA). */
+  /** `hero2` matches the alternate split-panel reference (navy borders, brand pink CTA). */
   variant?: "default" | "hero2";
 };
 
 export function LoginForm({ idPrefix = "", variant = "default" }: LoginFormProps) {
-  const emailId = `${idPrefix}email`;
-  const passwordId = `${idPrefix}password`;
-  const iconClass = variant === "hero2" ? "size-5 shrink-0 text-[#1A365D]" : undefined;
+  const [mode, setMode] = useState<"login" | "create">("login");
+  const isCreateMode = mode === "create";
+  const emailId = `${idPrefix}${mode}-email`;
+  const passwordId = `${idPrefix}${mode}-password`;
+  const iconClass = variant === "hero2" ? "size-5 shrink-0 text-[var(--pcl-blue)]" : undefined;
+  const panelTitle = isCreateMode ? "Create Account" : "Member Login";
+  const submitLabel = isCreateMode ? "CREATE ACCOUNT" : "LOGIN";
+  const supportLabel = isCreateMode ? "Need help creating your account?" : "Need help signing in?";
 
   return (
     <form className="flex w-full max-w-md flex-col gap-5" action="#" method="post">
+      <div className="flex flex-col items-center gap-4">
+        <div
+          className="inline-flex rounded-full border border-[color-mix(in_srgb,var(--pcl-blue)_12%,white)] bg-[color-mix(in_srgb,var(--pcl-blue)_8%,white)] p-1"
+          aria-label="Account access mode"
+        >
+          <button
+            type="button"
+            className={`rounded-full px-5 py-2 text-sm font-bold tracking-[0.02em] transition-colors ${
+              !isCreateMode
+                ? "bg-white text-[var(--pcl-blue)] shadow-[0_4px_16px_rgba(2,53,150,0.12)]"
+                : "text-[#5A6673] hover:text-[var(--pcl-blue)]"
+            }`}
+            onClick={() => setMode("login")}
+          >
+            Member Login
+          </button>
+          <button
+            type="button"
+            className={`rounded-full px-5 py-2 text-sm font-bold tracking-[0.02em] transition-colors ${
+              isCreateMode
+                ? "bg-white text-[var(--pcl-blue)] shadow-[0_4px_16px_rgba(2,53,150,0.12)]"
+                : "text-[#5A6673] hover:text-[var(--pcl-blue)]"
+            }`}
+            onClick={() => setMode("create")}
+          >
+            Create Account
+          </button>
+        </div>
+
+        <h2 className="font-pcl-display text-3xl font-black tracking-tight text-[var(--pcl-blue)] sm:text-[2.2rem]">
+          {panelTitle}
+        </h2>
+      </div>
+
+      <div>
       <NotchedField id={emailId} label="Email Id" variant={variant}>
         <EnvelopeIcon className={iconClass} />
         <input
@@ -120,59 +162,57 @@ export function LoginForm({ idPrefix = "", variant = "default" }: LoginFormProps
         />
       </NotchedField>
 
-      <NotchedField id={passwordId} label="Password" variant={variant}>
-        <LockIcon className={iconClass} />
-        <input
-          id={passwordId}
-          name="password"
-          type="password"
-          autoComplete="current-password"
-          placeholder="••••••••"
-          required
-          className="min-w-0 flex-1 border-0 bg-transparent text-sm text-[var(--pcl-neutral-dark)] outline-none placeholder:text-[var(--pcl-neutral-light)]"
-        />
-      </NotchedField>
+        <div className="mt-5">
+          <NotchedField id={passwordId} label="Password" variant={variant}>
+            <LockIcon className={iconClass} />
+            <input
+              id={passwordId}
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              required
+              className="min-w-0 flex-1 border-0 bg-transparent text-sm text-[var(--pcl-neutral-dark)] outline-none placeholder:text-[var(--pcl-neutral-light)]"
+            />
+          </NotchedField>
+        </div>
 
-      <div className="flex justify-center">
-        <a
-          href="#"
-          className="text-xs font-medium text-[var(--pcl-grey)] no-underline transition-colors hover:text-[var(--pcl-hover-accent)]"
-        >
-          Forgot your password?
-        </a>
       </div>
 
       <button
         type="submit"
         className={
           variant === "hero2"
-            ? "w-full cursor-pointer rounded-full border-0 bg-[#ED2088] py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-white shadow-[0_2px_8px_rgba(237,32,136,0.35)] transition-[background-color,box-shadow,transform,filter] hover:brightness-110 active:scale-[0.98] active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9177c]"
+            ? "w-full cursor-pointer rounded-full border-0 bg-[var(--pcl-pink)] py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-white shadow-[0_2px_8px_rgba(230,0,96,0.35)] transition-[background-color,box-shadow,transform,filter] hover:brightness-110 active:scale-[0.98] active:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--pcl-pink-dark)]"
             : "login-submit-btn w-full cursor-pointer rounded-full border-0 py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em]"
         }
       >
-        LOGIN
+        {submitLabel}
       </button>
 
-      <button
-        type="button"
-        className="w-full cursor-pointer rounded-full border-2 border-[#ED2088] bg-transparent py-3.5 text-center text-sm font-bold uppercase tracking-[0.12em] text-[#ED2088] transition-[background-color,color,box-shadow,transform] hover:bg-[#ED2088]/8 active:scale-[0.98] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9177c]"
-      >
-        CREATE ACCOUNT
-      </button>
+      <div className="flex min-h-4 justify-center">
+        {!isCreateMode ? (
+          <a
+            href="#"
+            className="text-xs font-medium text-[var(--pcl-grey)] no-underline transition-colors hover:text-[var(--pcl-hover-accent)]"
+          >
+            Forgot your password?
+          </a>
+        ) : <span aria-hidden className="invisible text-xs">Placeholder</span>}
+      </div>
 
       <div className="flex flex-col items-center gap-2 pt-1">
-        <p className="text-xs font-medium uppercase tracking-[0.08em] text-[#7A7A7A]">
-          Need help signing in?
+        <p className="min-h-8 text-center text-xs font-medium uppercase tracking-[0.08em] text-[#7A7A7A]">
+          {supportLabel}
         </p>
         <a
           href="tel:+18884030301"
           className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-center text-sm font-semibold no-underline transition-[border-color,background-color,color,transform] hover:-translate-y-0.5 hover:text-[var(--pcl-hover-accent)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ${
             variant === "hero2"
-              ? "border-[#ED2088]/25 bg-[#ED2088]/6 text-[#555555] visited:text-[#555555] focus-visible:ring-[#ED2088]"
+              ? "border-[var(--pcl-pink)] bg-[var(--pcl-pink-surface-hover)] text-[#555555] visited:text-[#555555] focus-visible:ring-[var(--pcl-pink)]"
               : "border-[var(--pcl-blue)]/15 bg-[var(--pcl-blue)]/4 text-[var(--pcl-neutral-dark)] visited:text-[var(--pcl-neutral-dark)] focus-visible:ring-[var(--pcl-pink)]"
           }`}
         >
-          <PhoneIcon className="size-4 shrink-0 text-[#ED2088]" />
+          <PhoneIcon className="size-4 shrink-0 text-[var(--pcl-pink)]" />
           <span>Call support: +1 888 403 0301</span>
         </a>
       </div>

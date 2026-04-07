@@ -6,11 +6,11 @@
  */
 :root {
   /* ── Princess Blue system ── */
-  --pcl-blue: #00538b;
-  --pcl-blue-light: #0067a5;
-  --pcl-blue-dark: #003b5c;
-  --pcl-blue-aux-dark: #002b49;
-  --pcl-blue-bright: #0071c2;
+  --pcl-blue: #023596;
+  --pcl-blue-light: #023596;
+  --pcl-blue-dark: #023596;
+  --pcl-blue-aux-dark: #023596;
+  --pcl-blue-bright: #023596;
 
   /* ── Neutrals ── */
   --pcl-grey: #54575a;
@@ -25,9 +25,9 @@
   /* ── Accents ── */
   --pcl-gold: #c5a572;
   --pcl-red: #d4272e;
-  --pcl-pink: #e91e8c;
+  --pcl-pink: #e60060;
   /* Filled pink CTA hover / pressed */
-  --pcl-pink-dark: #c9177c;
+  --pcl-pink-dark: color-mix(in srgb, var(--pcl-pink) 82%, black);
   --pcl-green: #00a651;
 
   /* Promo / outline CTA pink — global hover & pill button (McKinley accent) */
@@ -39,7 +39,7 @@
   --travel-primary: var(--pcl-blue);
   --travel-primary-hover: var(--pcl-blue-light);
   --travel-text-muted: var(--pcl-grey);
-  --travel-border-soft: rgba(0, 83, 139, 0.2);
+  --travel-border-soft: rgba(2, 53, 150, 0.2);
 
   --background: var(--pcl-white);
   --foreground: var(--pcl-neutral-dark);
@@ -56,7 +56,7 @@
 
 img.site-header-logo {
   display: block;
-  width: 320px;
+  width: 260px;
   height: auto;
   object-fit: contain;
   object-position: left center;
@@ -69,13 +69,17 @@ img.site-header-logo {
   --font-display: var(--font-pcl-display);
 }
 
+html {
+  background: #333437;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-pcl-text), system-ui, sans-serif;
 }
 
-/* Headings — Domaine Display Narrow (local OTF, next/font) */
+/* Headings — display font token */
 .font-pcl-display {
   font-family: var(--font-pcl-display), system-ui, sans-serif;
 }
@@ -115,10 +119,10 @@ body {
  * (mixing white made the button look “not pink,” and touch :hover can stick pale).
  */
 button.login-submit-btn {
-  background-color: #e91e8c;
+  background-color: #e60060;
   background-color: var(--pcl-pink);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(233, 30, 140, 0.35);
+  box-shadow: 0 2px 8px rgba(230, 0, 96, 0.35);
   transition:
     background-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -127,17 +131,17 @@ button.login-submit-btn {
 }
 
 button.login-submit-btn:hover {
-  background-color: #e91e8c;
+  background-color: #e60060;
   background-color: var(--pcl-pink);
   filter: brightness(1.12);
-  box-shadow: 0 4px 18px rgba(233, 30, 140, 0.55);
+  box-shadow: 0 4px 18px rgba(230, 0, 96, 0.55);
 }
 
 button.login-submit-btn:active {
   filter: none;
-  background-color: #c9177c;
+  background-color: #b8004e;
   background-color: var(--pcl-pink-dark);
-  box-shadow: 0 1px 4px rgba(233, 30, 140, 0.45);
+  box-shadow: 0 1px 4px rgba(230, 0, 96, 0.45);
   transform: scale(0.98);
 }
 

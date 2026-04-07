@@ -1,8 +1,10 @@
+import { AccountAccessCtaSection } from "./components/AccountAccessCtaSection";
 import { BenefitsMayWorkDifferentlySection } from "./components/BenefitsMayWorkDifferentlySection";
+import { FaqSection } from "./components/FaqSection";
 import { Hero2 } from "./components/Hero2";
-import { NeedHelpSection } from "./components/NeedHelpSection";
 import { OfficialAccessSection } from "./components/OfficialAccessSection";
 import { PrincessPromotionsOverviewSection } from "./components/PrincessPromotionsOverviewSection";
+import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import { WhatYouCanDoHereSection } from "./components/WhatYouCanDoHereSection";
 
@@ -13,9 +15,11 @@ export default function Home() {
       <Hero2 />
       <OfficialAccessSection />
       <PrincessPromotionsOverviewSection />
+      <FaqSection />
       <WhatYouCanDoHereSection />
       <BenefitsMayWorkDifferentlySection />
-      <NeedHelpSection />
+      <AccountAccessCtaSection />
+      <SiteFooter />
     </div>
   );
 }

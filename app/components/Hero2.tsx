@@ -13,12 +13,9 @@ export function Hero2() {
     >
       <Hero2LeftPanel />
 
-      <div className="relative flex min-h-[28rem] flex-1 flex-col justify-center bg-[linear-gradient(180deg,#fdfefe_0%,#f3f8fd_100%)] px-6 py-10 sm:px-12 sm:py-12 lg:min-h-0 lg:max-w-[50%]">
+      <div className="relative z-20 -mt-16 flex min-h-[28rem] flex-1 flex-col justify-center overflow-hidden rounded-t-[2rem] bg-[linear-gradient(180deg,#ffffff_0%,#f9fbfd_100%)] px-6 py-10 sm:-mt-20 sm:px-12 sm:py-12 lg:mt-0 lg:min-h-0 lg:max-w-[50%] lg:rounded-t-none">
         <div className="flex w-full shrink-0 justify-center">
-          <div className="ios-glass-panel ios-glass-panel-clear flex w-full min-w-0 max-w-md shrink-0 flex-col items-center rounded-[2rem] px-6 py-8 text-center sm:px-8 sm:py-10">
-            <h2 className="mb-6 font-pcl-display text-3xl font-black tracking-tight text-[#1A365D] sm:text-[2.2rem]">
-              Member Login
-            </h2>
+          <div className="flex w-full min-w-0 max-w-md shrink-0 flex-col items-center rounded-[2rem] px-6 py-8 text-center sm:px-8 sm:py-10">
             <LoginForm idPrefix="hero2-" variant="hero2" />
           </div>
         </div>

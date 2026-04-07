@@ -37,7 +37,7 @@ Extracted from the live princess.com style guide (Adobe AEM).
 | Accent Silver | `#A7A9AC` | Subtle metallic accent |
 | Sanctuary Rose Gold | `#B08D6E` | Sanctuary Collection sub-brand |
 | CTA Red | `#D4272E` | Sale badges, urgency elements |
-| McKinley Pink | `#E91E8C` | AI assistant sparkle accent |
+| McKinley Pink | `#E60060` | AI assistant sparkle accent |
 | Neutral Dark | `#333333` | Headings, primary text on light bg |
 | Neutral Medium | `#666666` | Secondary body text |
 | Neutral Light | `#999999` | Tertiary text, placeholders |
@@ -263,7 +263,7 @@ Example: `https://assets.princess.com/is/image/princesscruises/whale-fin-sunset:
   --pcl-silver:          #A7A9AC;
   --pcl-rose-gold:       #B08D6E;
   --pcl-red:             #D4272E;
-  --pcl-pink:            #E91E8C;
+  --pcl-pink:            #E60060;
   --pcl-green:           #00A651;
 
   /* ── Typography ── */
@@ -295,7 +295,7 @@ Example: `https://assets.princess.com/is/image/princesscruises/whale-fin-sunset:
           silver:       '#A7A9AC',
           'rose-gold':  '#B08D6E',
           red:          '#D4272E',
-          pink:         '#E91E8C',
+          pink:         '#E60060',
           green:        '#00A651',
         },
         neutral: {

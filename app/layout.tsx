@@ -1,10 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Red_Hat_Text } from "next/font/google";
-import { domaineDisplayNarrow } from "./fonts/domaine-narrow";
+import { Spline_Sans } from "next/font/google";
 import "./globals.css";
 
-const redHatText = Red_Hat_Text({
+const splineSans = Spline_Sans({
   variable: "--font-pcl-text",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const splineSansDisplay = Spline_Sans({
+  variable: "--font-pcl-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -29,7 +34,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#00538B",
+  themeColor: "#023596",
 };
 
 export default function RootLayout({
@@ -40,9 +45,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${redHatText.variable} ${domaineDisplayNarrow.variable} h-full antialiased`}
+      className={`${splineSans.variable} ${splineSansDisplay.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans" suppressHydrationWarning>
+      <body className="mx-auto min-h-full w-full max-w-[1440px] font-sans shadow-[0_4px_24px_4px_rgba(0,0,0,0.5)]" suppressHydrationWarning>
         {children}
       </body>
     </html>
