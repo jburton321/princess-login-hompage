@@ -12,7 +12,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
 const mp4 = path.join(root, "public", "hero-loop.mp4");
 const pageTsx = path.join(root, "app", "page.tsx");
-const heroSectionTsx = path.join(root, "app", "components", "HeroSection.tsx");
+const hero2Tsx = path.join(root, "app", "components", "Hero2.tsx");
+const hero2LeftPanelTsx = path.join(root, "app", "components", "Hero2LeftPanel.tsx");
 const heroBackgroundVideoTsx = path.join(root, "app", "components", "HeroBackgroundVideo.tsx");
 
 let failed = false;
@@ -37,20 +38,23 @@ if (!fs.existsSync(mp4)) {
   }
 }
 
-const heroSrc = [pageTsx, heroSectionTsx, heroBackgroundVideoTsx]
+const heroSrc = [pageTsx, hero2Tsx, hero2LeftPanelTsx, heroBackgroundVideoTsx]
   .filter((p) => fs.existsSync(p))
   .map((p) => fs.readFileSync(p, "utf8"))
   .join("\n");
 
 if (!fs.existsSync(pageTsx)) {
   fail(`Missing ${path.relative(root, pageTsx)}`);
-} else if (!fs.existsSync(heroSectionTsx)) {
-  fail(`Missing ${path.relative(root, heroSectionTsx)}`);
+} else if (!fs.existsSync(hero2Tsx)) {
+  fail(`Missing ${path.relative(root, hero2Tsx)}`);
+} else if (!fs.existsSync(hero2LeftPanelTsx)) {
+  fail(`Missing ${path.relative(root, hero2LeftPanelTsx)}`);
 } else if (!fs.existsSync(heroBackgroundVideoTsx)) {
   fail(`Missing ${path.relative(root, heroBackgroundVideoTsx)}`);
 } else {
   const pageContent = fs.readFileSync(pageTsx, "utf8");
-  const sectionContent = fs.readFileSync(heroSectionTsx, "utf8");
+  const hero2Content = fs.readFileSync(hero2Tsx, "utf8");
+  const leftPanelContent = fs.readFileSync(hero2LeftPanelTsx, "utf8");
   const checks = [
     [/<video[\s\S]*?>/i.test(heroSrc), "<video> present (HeroBackgroundVideo / hero stack)"],
     [/hero-loop|HERO_LOOP_SRC|\/hero-loop\.mp4/.test(heroSrc), "hero video path /hero-loop.mp4"],
@@ -58,8 +62,9 @@ if (!fs.existsSync(pageTsx)) {
     [/muted/.test(heroSrc), "muted (required for autoplay in browsers)"],
     [/loop/.test(heroSrc), "loop"],
     [/playsInline/.test(heroSrc), "playsInline (iOS)"],
-    [/HeroSection/.test(pageContent), "page.tsx renders HeroSection"],
-    [sectionContent.includes("isolate") && sectionContent.includes("overflow-hidden"), "HeroSection: isolate + overflow-hidden"],
+    [/Hero2/.test(pageContent), "page.tsx renders Hero2"],
+    [/Hero2LeftPanel/.test(hero2Content), "Hero2 renders Hero2LeftPanel"],
+    [leftPanelContent.includes("isolate") && leftPanelContent.includes("overflow-hidden"), "Hero2LeftPanel: isolate + overflow-hidden"],
   ];
   for (const [pass, label] of checks) {
     if (pass) ok(`${label}`);

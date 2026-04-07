@@ -1,10 +1,20 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Spline Sans";
+  src: url("/fonts/spline-sans/SplineSansLatin.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
 /*
  * Princess Cruises brand tokens — PCL Brand Book + web palette.
  * Full reference: docs/princess-brand-reference.md
  */
 :root {
+  --font-pcl-text: "Spline Sans", system-ui, sans-serif;
+  --font-pcl-display: "Spline Sans", system-ui, sans-serif;
   /* ── Princess Blue system ── */
   --pcl-blue: #023596;
   --pcl-blue-light: #023596;

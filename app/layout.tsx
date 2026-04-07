@@ -1,12 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Spline_Sans } from "next/font/google";
 import "./globals.css";
 
-const siteTitle = "Princess Promotions";
+const siteTitle = "Princess Promotions | Member Login and Travel Benefits Access";
 const siteDescription =
   "Exceptional savings on our curated collection of travel, leisure, and lifestyle products and services is only a few steps away!";
-const socialImageUrl =
-  "https://assets.princess.com/is/image/princesscruises/santa-monica-california%3A4x5-Portrait?ts=1756238489918";
+const socialImageUrl = "/social-share.png";
 const resolvedSiteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
   process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() ||
@@ -15,18 +13,6 @@ const resolvedSiteUrl =
 const siteUrl = resolvedSiteUrl.startsWith("http")
   ? resolvedSiteUrl
   : `https://${resolvedSiteUrl}`;
-
-const splineSans = Spline_Sans({
-  variable: "--font-pcl-text",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const splineSansDisplay = Spline_Sans({
-  variable: "--font-pcl-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 /** Aligned with https://www.princesspromotions.com/ initial HTML meta (title, description, viewport, theme-color, robots). */
 export const metadata: Metadata = {
@@ -79,10 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${splineSans.variable} ${splineSansDisplay.variable} h-full antialiased`}
-    >
+    <html lang="en" className="h-full antialiased">
       <body className="mx-auto min-h-full w-full max-w-[1440px] font-sans shadow-[0_4px_24px_4px_rgba(0,0,0,0.5)]" suppressHydrationWarning>
         {children}
       </body>

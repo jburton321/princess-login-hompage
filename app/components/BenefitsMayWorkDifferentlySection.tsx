@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 /**
  * Blue promo-style explainer card clarifying that cruise and hotel benefits can
  * follow different rules and timelines.
@@ -30,19 +28,25 @@ export function BenefitsMayWorkDifferentlySection() {
             </div>
 
             <div className="relative flex min-h-[18rem] items-center justify-center lg:min-h-full lg:w-[27rem]">
-              <div
-                className="absolute left-1/2 top-1/2 hidden h-[27rem] w-[27rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[color-mix(in_srgb,var(--pcl-blue)_78%,white)] lg:block"
-                aria-hidden
-              />
-
-              <div className="relative z-10 size-[16rem] overflow-hidden rounded-full lg:size-[21rem]">
-                <Image
-                  src="/family-travel-moment.png"
-                  alt="Travel benefits illustration"
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 288px, 336px"
+              <div className="relative flex size-[16rem] items-center justify-center lg:size-[27rem]">
+                <div
+                  className="absolute inset-0 hidden rounded-full bg-[color-mix(in_srgb,var(--pcl-blue)_78%,white)] lg:block"
+                  aria-hidden
                 />
+
+                <div className="relative z-10 size-[16rem] overflow-hidden rounded-full lg:size-[21rem]">
+                  <video
+                    className="h-full w-full object-cover object-center"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-label="Travel benefits video"
+                  >
+                    <source src="/window.mp4" type="video/mp4" />
+                  </video>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { HeroBackgroundVideo } from "./HeroBackgroundVideo";
 
 /**
@@ -8,16 +6,6 @@ import { HeroBackgroundVideo } from "./HeroBackgroundVideo";
 export function Hero2LeftPanel() {
   return (
     <div className="sticky top-0 isolate flex h-[100svh] min-h-[32rem] flex-1 flex-col justify-center overflow-hidden lg:relative lg:top-auto lg:h-auto lg:min-h-0 lg:max-w-[50%]">
-      {/* ── Background cruise ship image ── */}
-      <Image
-        src="/cruise-lines/ship-primary.png"
-        alt="Princess Cruises ship at sea"
-        fill
-        className="z-0 object-cover object-[center_40%]"
-        priority
-        sizes="(max-width: 1024px) 100vw, 50vw"
-      />
-
       {/* ── Multi-layer gradient overlay for depth ── */}
       <div
         className="absolute inset-0 z-[1]"
