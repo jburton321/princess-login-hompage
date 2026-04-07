@@ -20,7 +20,7 @@ function PhoneIcon() {
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 shrink-0 bg-white/78 backdrop-blur-md shadow-[0_10px_30px_rgba(0,43,73,0.08)]">
-      <div className="flex w-full max-w-none items-center justify-between gap-4 pr-4 sm:pr-6">
+      <div className="flex w-full max-w-none items-center justify-between gap-2 pr-3 sm:gap-4 sm:pr-6">
         <div className="flex min-w-0 shrink-0 items-center">
           <img
             src="/princess-promotions-logo.png"
@@ -29,9 +29,9 @@ export function SiteHeader() {
             fetchPriority="high"
           />
         </div>
-        <div className="flex min-w-0 items-center">
-          <div className="flex flex-col items-end gap-0.5 text-right sm:flex-row sm:items-center sm:gap-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-[var(--pcl-blue)] whitespace-nowrap sm:text-sm">
+        <div className="flex min-w-0 flex-1 items-center justify-end">
+          <div className="flex min-w-0 flex-col items-end gap-0.5 text-right sm:flex-row sm:items-center sm:gap-4">
+            <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[var(--pcl-blue)] whitespace-nowrap sm:text-sm sm:tracking-[0.12em]">
               Contact Us
             </p>
             <span className="hidden text-[var(--pcl-grey)] sm:inline" aria-hidden>
@@ -39,7 +39,7 @@ export function SiteHeader() {
             </span>
             <a
               href="tel:+18884030301"
-              className="inline-flex items-center gap-1.5 text-base font-semibold leading-6 text-[var(--pcl-blue)] no-underline whitespace-nowrap sm:gap-2 sm:text-2xl sm:leading-7"
+              className="inline-flex min-w-0 items-center gap-1 text-[15px] font-semibold leading-5 text-[var(--pcl-blue)] no-underline whitespace-nowrap sm:gap-2 sm:text-2xl sm:leading-7"
             >
               <PhoneIcon />
               +1 888 403 0301
