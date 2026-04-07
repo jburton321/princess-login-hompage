@@ -2,6 +2,20 @@ import type { Metadata, Viewport } from "next";
 import { Spline_Sans } from "next/font/google";
 import "./globals.css";
 
+const siteTitle = "Princess Promotions";
+const siteDescription =
+  "Exceptional savings on our curated collection of travel, leisure, and lifestyle products and services is only a few steps away!";
+const socialImageUrl =
+  "https://assets.princess.com/is/image/princesscruises/santa-monica-california%3A4x5-Portrait?ts=1756238489918";
+const resolvedSiteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim() ||
+  process.env.VERCEL_URL?.trim() ||
+  "https://princess-login-hompage.vercel.app";
+const siteUrl = resolvedSiteUrl.startsWith("http")
+  ? resolvedSiteUrl
+  : `https://${resolvedSiteUrl}`;
+
 const splineSans = Spline_Sans({
   variable: "--font-pcl-text",
   subsets: ["latin"],
@@ -16,12 +30,34 @@ const splineSansDisplay = Spline_Sans({
 
 /** Aligned with https://www.princesspromotions.com/ initial HTML meta (title, description, viewport, theme-color, robots). */
 export const metadata: Metadata = {
-  title: "Princess Promotions",
-  description:
-    "Exceptional savings on our curated collection of travel, leisure, and lifestyle products and services is only a few steps away!",
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: {
+    canonical: "/",
+  },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    title: siteTitle,
+    description: siteDescription,
+    url: "/",
+    siteName: siteTitle,
+    type: "website",
+    images: [
+      {
+        url: socialImageUrl,
+        alt: siteTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [socialImageUrl],
   },
   /** Matches https://www.princesspromotions.com/ — `<link rel="icon" href="/favicon.ico" />` */
   icons: {

@@ -6,10 +6,10 @@ import Image from "next/image";
  */
 export function BenefitsMayWorkDifferentlySection() {
   return (
-    <section className="bg-white pl-0 pr-6 pb-16 pt-16 sm:pr-10 sm:pb-20 sm:pt-20 lg:pr-16 lg:pb-24 lg:pt-24">
-      <div className="max-w-7xl">
-        <div className="overflow-hidden rounded-r-[2.25rem] rounded-l-none bg-[var(--pcl-blue)] text-white lg:h-[27rem] lg:rounded-r-[13.5rem]">
-          <div className="grid items-center gap-8 px-8 py-10 sm:px-12 sm:py-12 lg:h-[27rem] lg:grid-cols-[minmax(0,1fr)_27rem] lg:gap-0 lg:px-16 lg:py-0">
+    <section className="bg-white px-0 pb-16 pt-0 lg:pr-16 lg:pb-24 lg:pt-24">
+      <div className="w-full max-w-none lg:max-w-7xl">
+        <div className="w-full overflow-hidden rounded-none bg-[var(--pcl-blue)] text-white lg:h-[27rem] lg:rounded-r-[13.5rem] lg:rounded-l-none">
+          <div className="grid items-center gap-8 px-8 py-10 lg:h-[27rem] lg:grid-cols-[minmax(0,1fr)_27rem] lg:gap-0 lg:px-16 lg:py-0">
             <div className="max-w-2xl text-center lg:py-14 lg:text-left">
               <h2 className="font-pcl-display text-4xl font-black leading-[0.96] tracking-tight sm:text-5xl">
                 Cruise and hotel benefits may work differently
@@ -35,7 +35,7 @@ export function BenefitsMayWorkDifferentlySection() {
                 aria-hidden
               />
 
-              <div className="relative z-10 size-[16rem] overflow-hidden rounded-full sm:size-[18rem] lg:size-[21rem]">
+              <div className="relative z-10 size-[16rem] overflow-hidden rounded-full lg:size-[21rem]">
                 <Image
                   src="/family-travel-moment.png"
                   alt="Travel benefits illustration"
