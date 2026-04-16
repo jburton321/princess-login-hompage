@@ -22,7 +22,7 @@ function PhoneIcon() {
  */
 export function AccountAccessCtaSection() {
   return (
-    <section className="relative w-full overflow-hidden">
+    <section id="contact-support" className="relative w-full overflow-hidden">
       <img
         src="/img6.png"
         alt="Coastal harbor view"
@@ -50,7 +50,7 @@ export function AccountAccessCtaSection() {
             Log In
           </a>
 
-          <div className="mt-12 max-w-3xl border-t border-white/20 pt-10">
+          <div className="mt-12 w-full max-w-5xl border-t border-white/20 pt-10">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white">
               Need Assistance?
             </p>
@@ -64,7 +64,7 @@ export function AccountAccessCtaSection() {
               benefits and stay connected.
             </p>
 
-            <div className="mt-8 grid justify-center gap-4 text-center sm:grid-cols-3">
+            <div className="mt-8 grid gap-4 text-center sm:grid-cols-3">
               <div className="w-full rounded-2xl border border-white/16 bg-white/10 px-5 py-4 backdrop-blur-[2px]">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/72">
                   Phone
@@ -79,7 +79,7 @@ export function AccountAccessCtaSection() {
                   Hours
                 </p>
                 <p className="mt-2 text-base font-semibold text-white">
-                  [INSERT HOURS]
+                  Monday - Friday 6am-8pm PT, Saturday - Sunday 7am-6pm
                 </p>
               </div>
               <div className="w-full rounded-2xl border border-white/16 bg-white/10 px-5 py-4 backdrop-blur-[2px]">

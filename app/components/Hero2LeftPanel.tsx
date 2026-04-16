@@ -33,6 +33,21 @@ export function Hero2LeftPanel() {
           <br />
           and get the support you need for your next experience.
         </p>
+
+        <div className="flex w-full max-w-[26rem] flex-col gap-3 sm:flex-row sm:justify-center">
+          <a
+            href="#member-login"
+            className="inline-flex min-h-12 items-center justify-center rounded-full bg-[var(--pcl-pink)] px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white no-underline shadow-[0_10px_28px_rgba(230,0,96,0.32)] transition-[transform,filter] hover:-translate-y-0.5 hover:brightness-105"
+          >
+            Login
+          </a>
+          <a
+            href="#learn-more"
+            className="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-white bg-white/8 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white no-underline backdrop-blur-[2px] transition-[background-color,color,transform] hover:-translate-y-0.5 hover:bg-white hover:text-[var(--pcl-blue)]"
+          >
+            Learn More
+          </a>
+        </div>
       </div>
 
     </div>

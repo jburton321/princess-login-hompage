@@ -8,7 +8,7 @@ function FeatureIcon({ children }: { children: React.ReactNode }) {
 
 const overviewCards = [
   {
-    title: "Future Cruise Credits",
+    title: "Princess Future Cruise Package",
     icon: (
       <svg
         className="h-7 w-7 text-[var(--pcl-pink)]"
@@ -71,7 +71,10 @@ const overviewCards = [
  */
 export function PrincessPromotionsOverviewSection() {
   return (
-    <section className="w-full bg-[linear-gradient(180deg,#F8FAFD_0%,#F3F6FB_100%)] px-8 py-0 sm:px-12 lg:px-16">
+    <section
+      id="learn-more"
+      className="w-full bg-[linear-gradient(180deg,#F8FAFD_0%,#F3F6FB_100%)] px-8 py-0 sm:px-12 lg:px-16"
+    >
       <div className="mx-auto flex max-w-5xl flex-col items-center pt-14 text-center sm:pt-16 lg:pt-20">
         <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[var(--pcl-pink)]">
           Princess Promotions

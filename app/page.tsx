@@ -6,7 +6,6 @@ import { OfficialAccessSection } from "./components/OfficialAccessSection";
 import { PrincessPromotionsOverviewSection } from "./components/PrincessPromotionsOverviewSection";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
-import { WhatYouCanDoHereSection } from "./components/WhatYouCanDoHereSection";
 
 export default function Home() {
   return (
@@ -16,7 +15,6 @@ export default function Home() {
       <OfficialAccessSection />
       <PrincessPromotionsOverviewSection />
       <FaqSection />
-      <WhatYouCanDoHereSection />
       <BenefitsMayWorkDifferentlySection />
       <AccountAccessCtaSection />
       <SiteFooter />
