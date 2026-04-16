@@ -83,9 +83,9 @@ export function PrincessPromotionsOverviewSection() {
           What is Princess Promotions?
         </h2>
         <p className="mt-6 max-w-3xl text-base leading-8 text-[#1F2937] sm:text-[1.05rem]">
-          Princess Promotions supports guests who have purchased select
-          promotional travel packages connected to future travel opportunities
-          and related benefits.
+          Princess Promotions supports guests who have purchased a Princess
+          Future Cruise Package connected to future travel opportunities and
+          <span className="whitespace-nowrap">related benefits.</span>
         </p>
       </div>
 

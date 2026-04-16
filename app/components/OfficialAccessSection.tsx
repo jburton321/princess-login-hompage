@@ -20,9 +20,10 @@ export function OfficialAccessSection() {
 
             <div className="mt-6 space-y-5 text-base leading-8 text-[#1F2937] sm:text-[1.05rem]">
               <p>
-                If you were directed here after purchasing a promotional travel
-                package, this is the official place to access your account and
-                review your available benefits.
+                If you were directed here after purchasing a Princess Future
+                Cruise Package, this is the official place to access your
+                account and review your{" "}
+                <span className="whitespace-nowrap">available benefits.</span>
               </p>
               <p>
                 Our goal is to provide a clear and reliable experience by
