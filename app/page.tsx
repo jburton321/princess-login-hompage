@@ -1,5 +1,4 @@
 import { AccountAccessCtaSection } from "./components/AccountAccessCtaSection";
-import { BenefitsMayWorkDifferentlySection } from "./components/BenefitsMayWorkDifferentlySection";
 import { FaqSection } from "./components/FaqSection";
 import { Hero2 } from "./components/Hero2";
 import { OfficialAccessSection } from "./components/OfficialAccessSection";
@@ -15,7 +14,6 @@ export default function Home() {
       <OfficialAccessSection />
       <PrincessPromotionsOverviewSection />
       <FaqSection />
-      <BenefitsMayWorkDifferentlySection />
       <AccountAccessCtaSection />
       <SiteFooter />
     </div>

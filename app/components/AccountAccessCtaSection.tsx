@@ -33,7 +33,7 @@ export function AccountAccessCtaSection() {
         aria-hidden
       />
 
-      <div className="relative z-10 px-8 pb-16 pt-0 sm:px-12 sm:pb-20 sm:pt-0 lg:px-16 lg:pb-24 lg:pt-0">
+      <div className="relative z-10 px-8 pb-16 pt-12 sm:px-12 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-24 lg:pt-16">
         <div className="mx-auto flex max-w-4xl flex-col items-center text-center text-white">
           <h2 className="font-pcl-display text-4xl font-black leading-[0.96] tracking-tight text-[var(--pcl-blue)] sm:text-5xl lg:text-[4rem]">
             Access Your Account

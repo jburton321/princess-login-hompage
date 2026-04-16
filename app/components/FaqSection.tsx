@@ -113,8 +113,8 @@ const faqs = [
 export function FaqSection() {
   return (
     <section className="w-full bg-[#F6F8FB] px-0 py-0">
-      <div className="grid lg:grid-cols-2 lg:items-stretch">
-        <div className="relative min-h-[26rem] lg:min-h-full">
+      <div className="grid lg:grid-cols-2 lg:items-start">
+        <div className="relative min-h-[26rem] lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)] lg:self-start">
           <div className="relative h-full overflow-hidden">
             <Image
               src="/img5.png"
