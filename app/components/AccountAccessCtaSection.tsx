@@ -44,7 +44,7 @@ export function AccountAccessCtaSection() {
           </p>
 
           <a
-            href="#"
+            href="#member-login"
             className="mt-8 inline-flex min-w-[220px] items-center justify-center rounded-full bg-[var(--pcl-pink)] px-8 py-4 text-center text-sm font-bold uppercase tracking-[0.12em] text-white no-underline shadow-[0_10px_28px_rgba(230,0,96,0.32)] transition-[transform,filter] hover:-translate-y-0.5 hover:brightness-105"
           >
             Log In
@@ -69,10 +69,13 @@ export function AccountAccessCtaSection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/72">
                   Phone
                 </p>
-                <p className="mt-2 inline-flex items-center gap-2 text-base font-semibold text-white">
+                <a
+                  href="tel:+18884030301"
+                  className="mt-2 inline-flex items-center gap-2 text-base font-semibold text-white no-underline"
+                >
                   <PhoneIcon />
                   +1 888 403 0301
-                </p>
+                </a>
               </div>
               <div className="w-full rounded-2xl border border-white/16 bg-white/10 px-5 py-4 backdrop-blur-[2px]">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/72">

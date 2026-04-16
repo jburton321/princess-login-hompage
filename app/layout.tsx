@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { AnchorScrollEnhancer } from "./components/AnchorScrollEnhancer";
 import "./globals.css";
 
 const siteTitle = "Princess Promotions | Member Login and Travel Benefits Access";
@@ -155,6 +156,7 @@ export default function RootLayout({
       className={`${proximaNova.variable} ${domaineDisplay.variable} h-full antialiased`}
     >
       <body className="mx-auto min-h-full w-full max-w-[1440px] font-sans shadow-[0_4px_24px_4px_rgba(0,0,0,0.5)]" suppressHydrationWarning>
+        <AnchorScrollEnhancer />
         {children}
       </body>
     </html>

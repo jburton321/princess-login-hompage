@@ -2,6 +2,39 @@
 
 import Image from "next/image";
 
+function renderAnswerText(answer: string) {
+  const phoneRegex = /(\+1 888 403 0301|1-800-PRINCESS)/g;
+  const parts = answer.split(phoneRegex);
+
+  return parts.map((part, index) => {
+    if (part === "+1 888 403 0301") {
+      return (
+        <a
+          key={`${part}-${index}`}
+          href="tel:+18884030301"
+          className="font-semibold text-[var(--pcl-blue)] underline underline-offset-2"
+        >
+          {part}
+        </a>
+      );
+    }
+
+    if (part === "1-800-PRINCESS") {
+      return (
+        <a
+          key={`${part}-${index}`}
+          href="tel:1-800-PRINCESS"
+          className="font-semibold text-[var(--pcl-blue)] underline underline-offset-2"
+        >
+          {part}
+        </a>
+      );
+    }
+
+    return part;
+  });
+}
+
 const faqs = [
   {
     question: "What are Princess Future Cruise Packages?",
@@ -115,7 +148,7 @@ export function FaqSection() {
                     </span>
                   </summary>
                   <p className="ml-9 mt-3 max-w-3xl text-base leading-7 text-[#5A6673]">
-                    {faq.answer}
+                    {renderAnswerText(faq.answer)}
                   </p>
                 </details>
               ))}
