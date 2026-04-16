@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const siteTitle = "Princess Promotions | Member Login and Travel Benefits Access";
@@ -13,6 +14,90 @@ const resolvedSiteUrl =
 const siteUrl = resolvedSiteUrl.startsWith("http")
   ? resolvedSiteUrl
   : `https://${resolvedSiteUrl}`;
+
+const proximaNova = localFont({
+  src: [
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-Italic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-MediumItalic.otf",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-Semibold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-SemiboldItalic.otf",
+      weight: "600",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/proxima-nova/ProximaNova-BoldItalic.otf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-pcl-text",
+  display: "swap",
+});
+
+const domaineDisplay = localFont({
+  src: [
+    {
+      path: "../public/fonts/domaine-display/DomaineDisplay-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/domaine-display/DomaineDisplay-RegularItalic.ttf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/domaine-display/DomaineDisplay-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/domaine-display/DomaineDisplay-MediumItalic.ttf",
+      weight: "500",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/domaine-display/DomaineDisplay-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/domaine-display/DomaineDisplay-BoldItalic.ttf",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-pcl-display",
+  display: "swap",
+});
 
 /** Aligned with https://www.princesspromotions.com/ initial HTML meta (title, description, viewport, theme-color, robots). */
 export const metadata: Metadata = {
@@ -65,7 +150,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html
+      lang="en"
+      className={`${proximaNova.variable} ${domaineDisplay.variable} h-full antialiased`}
+    >
       <body className="mx-auto min-h-full w-full max-w-[1440px] font-sans shadow-[0_4px_24px_4px_rgba(0,0,0,0.5)]" suppressHydrationWarning>
         {children}
       </body>

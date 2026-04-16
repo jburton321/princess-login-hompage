@@ -130,17 +130,12 @@ export function LoginForm({ idPrefix = "", variant = "default" }: LoginFormProps
           >
             Member Login
           </button>
-          <button
-            type="button"
-            className={`rounded-full px-5 py-2 text-sm font-bold tracking-[0.02em] transition-colors ${
-              isCreateMode
-                ? "bg-white text-[var(--pcl-blue)] shadow-[0_4px_16px_rgba(2,53,150,0.12)]"
-                : "text-[#5A6673] hover:text-[var(--pcl-blue)]"
-            }`}
-            onClick={() => setMode("create")}
+          <a
+            href="#learn-more"
+            className="rounded-full px-5 py-2 text-sm font-bold tracking-[0.02em] text-[#5A6673] no-underline transition-colors hover:text-[var(--pcl-blue)]"
           >
-            Create Account
-          </button>
+            Learn More
+          </a>
         </div>
 
         <h2 className="font-pcl-display text-3xl font-black tracking-tight text-[var(--pcl-blue)] sm:text-[2.2rem]">
