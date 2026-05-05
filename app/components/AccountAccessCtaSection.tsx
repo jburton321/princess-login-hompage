@@ -65,7 +65,7 @@ export function AccountAccessCtaSection() {
             </p>
 
             <div className="mt-8 grid gap-4 text-center sm:grid-cols-2">
-              <div className="w-full rounded-2xl border border-white/16 bg-white/10 px-5 py-4 backdrop-blur-[2px]">
+              <div className="w-full rounded-2xl border border-white/16 bg-white/10 px-6 py-4 backdrop-blur-[2px] lg:px-7">
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/72">
                   Phone
                 </p>
@@ -81,7 +81,7 @@ export function AccountAccessCtaSection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.12em] text-white/72">
                   Hours
                 </p>
-                <p className="mt-2 text-base font-semibold text-white">
+                <p className="mt-2 whitespace-nowrap text-sm font-semibold text-white sm:text-base">
                   Monday - Friday 6am-8pm PT, Saturday - Sunday 7am-6pm
                 </p>
               </div>
