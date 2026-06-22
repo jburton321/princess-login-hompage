@@ -20,12 +20,13 @@ function PhoneIcon() {
 }
 
 const legalLinks = [
-  "Legal",
-  "Accessibility Policy",
-  "Privacy Notice",
-  "Website Terms of Use",
-  "Terms & Conditions",
-  "FAQs",
+  { label: "Blog", href: "/blog" },
+  { label: "Legal", href: "#" },
+  { label: "Accessibility Policy", href: "#" },
+  { label: "Privacy Notice", href: "#" },
+  { label: "Website Terms of Use", href: "#" },
+  { label: "Terms & Conditions", href: "#" },
+  { label: "FAQs", href: "#" },
 ] as const;
 
 /**
@@ -72,10 +73,10 @@ export function SiteFooter() {
               aria-label="Footer legal links"
               className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm leading-6 text-white/92 md:justify-start"
             >
-              {legalLinks.map((label) => (
+              {legalLinks.map(({ label, href }) => (
                 <a
                   key={label}
-                  href="#"
+                  href={href}
                   className="w-fit no-underline transition-opacity hover:opacity-80"
                 >
                   {label}

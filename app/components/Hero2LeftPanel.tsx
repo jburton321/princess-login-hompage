@@ -47,6 +47,12 @@ export function Hero2LeftPanel() {
           >
             Learn More
           </a>
+          <a
+            href="/blog"
+            className="inline-flex min-h-12 items-center justify-center rounded-full border-2 border-white bg-white/8 px-7 py-3 text-sm font-bold uppercase tracking-[0.12em] text-white no-underline backdrop-blur-[2px] transition-[background-color,color,transform] hover:-translate-y-0.5 hover:bg-white hover:text-[var(--pcl-blue)]"
+          >
+            Blog
+          </a>
         </div>
       </div>
 
