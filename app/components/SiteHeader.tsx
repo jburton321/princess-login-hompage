@@ -29,7 +29,18 @@ export function SiteHeader() {
             fetchPriority="high"
           />
         </div>
-        <div className="flex min-w-0 flex-1 items-center justify-end">
+        <div className="flex min-w-0 flex-1 items-center justify-end gap-3 sm:gap-5">
+          <nav className="flex items-center">
+            <a
+              href="/blog"
+              className="text-[11px] font-semibold uppercase tracking-[0.1em] text-[var(--pcl-blue)] no-underline transition-colors hover:text-[var(--pcl-pink)] sm:text-sm sm:tracking-[0.12em]"
+            >
+              Blog
+            </a>
+          </nav>
+          <span className="hidden text-[var(--pcl-grey)] sm:inline" aria-hidden>
+            |
+          </span>
           <div className="flex min-w-0 flex-col items-end gap-0.5 text-right sm:flex-row sm:items-center sm:gap-4">
             <p className="text-[9px] font-semibold uppercase tracking-[0.1em] text-[var(--pcl-blue)] whitespace-nowrap sm:text-sm sm:tracking-[0.12em]">
               Contact Us
